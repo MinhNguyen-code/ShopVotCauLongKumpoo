@@ -1,0 +1,291 @@
+[
+    {
+        "id": "kumpoo-power-balanced-11",
+        "name": "Vợt Cầu Lông Kumpoo Power Balanced 11",
+        "slug": "kumpoo-power-balanced-11",
+        "price": 599000,
+        "original_price": 950000,
+        "category": "Vợt Cầu Lông",
+        "variants": [
+            {
+                "color": "Đen",
+                "images": [
+                    "img/Vợt Cầu Lông Kumpoo Power Balanced 11/Black/vot-cau-long-kumpoo-power-balanced-11-den-chinh-hang-1.webp"
+                ]
+            },
+            {
+                "color": "Xanh Dương",
+                "images": [
+                    "img/Vợt Cầu Lông Kumpoo Power Balanced 11/Blue/img-2918-9cadb908547f4290a4c2852ff566ccb6-master_1712622188.webp",
+                    "img/Vợt Cầu Lông Kumpoo Power Balanced 11/Blue/vot-cau-long-kumpoo-balanced-11-xanh-1_1712258958.webp"
+                ]
+            },
+            {
+                "color": "Hồng",
+                "images": [
+                    "img/Vợt Cầu Lông Kumpoo Power Balanced 11/Pink/vot-cau-long-kumpoo-balanced-11-hong-1_1712258685.webp",
+                    "img/Vợt Cầu Lông Kumpoo Power Balanced 11/Pink/vot-cau-long-kumpoo-balanced-11-hong-2_1712258693.webp",
+                    "img/Vợt Cầu Lông Kumpoo Power Balanced 11/Pink/vot-cau-long-kumpoo-balanced-11-hong_1712258670.webp"
+                ]
+            },
+            {
+                "color": "Trắng",
+                "images": [
+                    "img/Vợt Cầu Lông Kumpoo Power Balanced 11/White/vot-cau-long-kumpoo-power-balanced-11-chinh-hang-1.webp",
+                    "img/Vợt Cầu Lông Kumpoo Power Balanced 11/White/vot-cau-long-kumpoo-power-balanced-11-chinh-hang-2.webp",
+                    "img/Vợt Cầu Lông Kumpoo Power Balanced 11/White/vot-cau-long-kumpoo-power-balanced-11-chinh-hang-3.webp",
+                    "img/Vợt Cầu Lông Kumpoo Power Balanced 11/White/vot-cau-long-kumpoo-power-balanced-11-chinh-hang-4.webp"
+                ]
+            }
+        ],
+        "images": [
+            "img/Vợt Cầu Lông Kumpoo Power Balanced 11/Black/vot-cau-long-kumpoo-power-balanced-11-den-chinh-hang-1.webp",
+            "img/Vợt Cầu Lông Kumpoo Power Balanced 11/Blue/vot-cau-long-kumpoo-balanced-11-xanh-1_1712258958.webp",
+            "img/Vợt Cầu Lông Kumpoo Power Balanced 11/Pink/vot-cau-long-kumpoo-balanced-11-hong-1_1712258685.webp",
+            "img/Vợt Cầu Lông Kumpoo Power Balanced 11/White/vot-cau-long-kumpoo-power-balanced-11-chinh-hang-1.webp"
+        ],
+        "specs": {
+            "Trọng lượng": "82 + 2 g (4U)",
+            "Độ cứng": "Trung bình",
+            "Điểm cân bằng": "290 +- 5 mm (Cân bằng)",
+            "Sức căng dây": "24 – 28 lbs (Tối đa 12.7 kg)",
+            "Chất liệu": "Carbon Graphite",
+            "Chiều dài": "675 mm"
+        },
+        "description": "Vợt phù hợp cho người mới tập chơi và những người có lực cổ tay yếu, đặc biệt là nữ giới."
+    },
+    {
+        "id": "kumpoo-yangzhou",
+        "name": "Vợt Cầu Lông Kumpoo YangZhou Chính Hãng",
+        "slug": "kumpoo-yangzhou",
+        "price": 520000,
+        "original_price": 850000,
+        "category": "Vợt Cầu Lông",
+        "images": [
+            "img/Vợt Cầu Lông Kumpoo YangZhou Chính Hãng/vot-cau-long-kumpoo-yangzhou-chinh-hang_1742841353.webp",
+            "img/Vợt Cầu Lông Kumpoo YangZhou Chính Hãng/vot-cau-long-kumpoo-yangzhou-chinh-hang-1_1742841358.webp",
+            "img/Vợt Cầu Lông Kumpoo YangZhou Chính Hãng/vot-cau-long-kumpoo-yangzhou-chinh-hang-2_1742841363.webp",
+            "img/Vợt Cầu Lông Kumpoo YangZhou Chính Hãng/vot-cau-long-kumpoo-yangzhou-chinh-hang-3_1742841368.webp",
+            "img/Vợt Cầu Lông Kumpoo YangZhou Chính Hãng/vot-cau-long-kumpoo-yangzhou-chinh-hang-4_1742841373.webp"
+        ],
+        "specs": {
+            "Trọng lượng": "82 ± 2g (4U)",
+            "Độ cứng": "Trung bình",
+            "Điểm cân bằng": "300 ± 5mm (Hơi nặng đầu)",
+            "Sức căng dây": "Tối đa 28 lbs",
+            "Color": "Trắng phối Xanh Dương",
+            "Chiều dài": "675 mm"
+        },
+        "description": "Sự kết hợp giữa thiết kế tinh tế và hiệu suất vượt trội, màu sắc trẻ trung năng động."
+    },
+    {
+        "id": "kumpoo-jingzhou",
+        "name": "Vợt Cầu Lông Kumpoo JingZhou Chính Hãng",
+        "slug": "kumpoo-jingzhou",
+        "price": 520000,
+        "original_price": 850000,
+        "category": "Vợt Cầu Lông",
+        "images": [
+            "img/Vợt Cầu Lông Kumpoo JingZhou Chính Hãng/vot-cau-long-kumpoo-jingzhou-chinh-hang_1742841785.webp",
+            "img/Vợt Cầu Lông Kumpoo JingZhou Chính Hãng/vot-cau-long-kumpoo-jingzhou-chinh-hang-1_1742841803.webp",
+            "img/Vợt Cầu Lông Kumpoo JingZhou Chính Hãng/vot-cau-long-kumpoo-jingzhou-chinh-hang-2_1742841808.webp",
+            "img/Vợt Cầu Lông Kumpoo JingZhou Chính Hãng/vot-cau-long-kumpoo-jingzhou-chinh-hang-3_1742841814.webp",
+            "img/Vợt Cầu Lông Kumpoo JingZhou Chính Hãng/vot-cau-long-kumpoo-jingzhou-chinh-hang-4_1742841821.webp"
+        ],
+        "specs": {
+            "Trọng lượng": "82 ± 2g (4U)",
+            "Độ cứng": "Trung bình",
+            "Điểm cân bằng": "295 ± 5mm (Cân bằng)",
+            "Sức căng dây": "Tối đa 28 lbs",
+            "Chiều dài": "675 mm"
+        },
+        "description": "Thiết kế mạnh mẽ, phù hợp cho lối chơi công thủ toàn diện của người mới chơi."
+    },
+    {
+        "id": "kumpoo-nine-tailed-fox",
+        "name": "Vợt Cầu Lông Kumpoo Nine Tailed Fox (Cửu Vĩ Hồ)",
+        "slug": "kumpoo-nine-tailed-fox",
+        "price": 550000,
+        "original_price": 890000,
+        "category": "Vợt Cầu Lông",
+        "images": [
+            "img/Vợt cầu lông Kumpoo Nine Tailed Fox (Cửu Vĩ Hồ)/vot-cau-long-kumpoo-nine-tailed-fox-cuu-vi-ho-noi-dia-trung_1724891850.webp",
+            "img/Vợt cầu lông Kumpoo Nine Tailed Fox (Cửu Vĩ Hồ)/vot-cau-long-kumpoo-nine-tailed-fox-cuu-vi-ho-noi-dia-trung-10_1705716574.webp",
+            "img/Vợt cầu lông Kumpoo Nine Tailed Fox (Cửu Vĩ Hồ)/vot-cau-long-kumpoo-nine-tailed-fox-cuu-vi-ho-noi-dia-trung-2_1705700315.webp",
+            "img/Vợt cầu lông Kumpoo Nine Tailed Fox (Cửu Vĩ Hồ)/vot-cau-long-kumpoo-nine-tailed-fox-cuu-vi-ho-noi-dia-trung-3_1705700309.webp",
+            "img/Vợt cầu lông Kumpoo Nine Tailed Fox (Cửu Vĩ Hồ)/vot-cau-long-kumpoo-nine-tailed-fox-cuu-vi-ho-noi-dia-trung-4_1705700469.webp"
+        ],
+        "specs": {
+            "Trọng lượng": "82 ± 2g (4U)",
+            "Độ cứng": "Trung bình",
+            "Điểm cân bằng": "298 ± 5mm (Hơi nặng đầu)",
+            "Sức căng dây": "Tối đa 28 lbs",
+            "Chiều dài": "675 mm"
+        },
+        "description": "Thiết kế lấy cảm hứng từ Cửu Vĩ Hồ cực đẹp và huyền bí, trợ lực tốt cho người chơi."
+    },
+    {
+        "id": "kumpoo-k520-pro",
+        "name": "Vợt Cầu Lông Kumpoo K520 Pro",
+        "slug": "kumpoo-k520-pro",
+        "price": 429000,
+        "original_price": 850000,
+        "category": "Vợt Cầu Lông",
+        "images": [
+            "img/Set Vợt Cầu Lông Kumpoo K520 Pro/Set Vợt Cầu Lông Kumpoo K520 Pro.webp"
+        ],
+        "specs": {
+            "Trọng lượng": "82 + 2 g (4U)",
+            "Độ cứng": "8.5 (Trung bình)",
+            "Điểm cân bằng": "290 +- 5 mm (Cân bằng)",
+            "Sức căng dây": "Tối đa 30 lbs (~13.6kg)",
+            "Chất liệu": "Carbon Fiber",
+            "Chiều dài": "675 mm"
+        },
+        "description": "Điểm cân bằng trung bình giúp cân bằng giữa tấn công và phòng thủ, phù hợp với lối đánh đa dạng."
+    },
+    {
+        "id": "kumpoo-power-control-r89",
+        "name": "Vợt Cầu Lông Kumpoo Power Control R89",
+        "slug": "kumpoo-power-control-r89",
+        "price": 840000,
+        "original_price": 1200000,
+        "category": "Vợt Cầu Lông",
+        "images": [
+            "img/Vợt Cầu Lông Kumpoo Power Control R89/Vợt Cầu Lông Kumpoo Power Control R89.webp",
+            "img/Vợt Cầu Lông Kumpoo Power Control R89/vot-cau-long-kumpoo-power-control-r89-den-chinh-hang-1_1710547317.webp",
+            "img/Vợt Cầu Lông Kumpoo Power Control R89/vot-cau-long-kumpoo-power-control-r89-den-chinh-hang-2_1710551769.webp",
+            "img/Vợt Cầu Lông Kumpoo Power Control R89/vot-cau-long-kumpoo-power-control-r89-den-chinh-hang-3_1710551763.webp",
+            "img/Vợt Cầu Lông Kumpoo Power Control R89/vot-cau-long-kumpoo-power-control-r89-den-chinh-hang-4_1710551822.webp",
+            "img/Vợt Cầu Lông Kumpoo Power Control R89/vot-cau-long-kumpoo-power-control-r89-den-chinh-hang_1710539958.webp"
+        ],
+        "specs": {
+            "Trọng lượng": "82 + 2 g (4U)",
+            "Độ cứng": "8.5 (Trung bình)",
+            "Điểm cân bằng": "290 +- 5 mm (Cân bằng)",
+            "Sức căng dây": "28 lbs (Tối đa 12.7kg)",
+            "Chất liệu": "Carbon Fiber",
+            "Chiều dài": "675 mm"
+        },
+        "description": "Thuộc dòng vợt dễ chơi, cân bằng, thích hợp cho lối chơi công thủ toàn diện."
+    },
+    {
+        "id": "kumpoo-power-control-e58ls",
+        "name": "Vợt Cầu Lông Kumpoo Power Control E58LS",
+        "slug": "kumpoo-power-control-e58ls",
+        "price": 610000,
+        "original_price": 950000,
+        "category": "Vợt Cầu Lông",
+        "images": [
+            "img/Vợt cầu lông Kumpoo Power Control E58LS new/Vợt cầu lông Kumpoo Power Control E58LS new.webp",
+            "img/Vợt cầu lông Kumpoo Power Control E58LS new/vot-cau-long-kumpoo-power-control-e58ls-new-chinh-hang-1_1709842920.webp",
+            "img/Vợt cầu lông Kumpoo Power Control E58LS new/vot-cau-long-kumpoo-power-control-e58ls-new-chinh-hang-2_1709842926.webp",
+            "img/Vợt cầu lông Kumpoo Power Control E58LS new/vot-cau-long-kumpoo-power-control-e58ls-new-chinh-hang-3_1710558930.webp"
+        ],
+        "specs": {
+            "Trọng lượng": "82 + 2g (4U)",
+            "Độ cứng": "Trung bình (8.7 ± 0.3)",
+            "Điểm cân bằng": "295 +- 5 mm (Cân bằng)",
+            "Sức căng dây": "24 - 28 lbs (Tối đa 12.5 kg)",
+            "Chất liệu": "Carbon Graphite",
+            "Chiều dài": "675 mm"
+        },
+        "description": "Dành cho lối đánh công thủ toàn diện, hơi thiên về tấn công mạnh mẽ với các pha đập cầu uy lực."
+    },
+    {
+        "id": "kumpoo-b-duck-cool-set",
+        "name": "SET Vợt Cầu Lông Kumpoo B.Duck Cool",
+        "slug": "kumpoo-b-duck-cool-set",
+        "price": 1599000,
+        "original_price": 2500000,
+        "category": "Bộ Sản Phẩm (Set)",
+        "images": [
+            "img/SET Vợt Cầu Lông Kumpoo B.Duck Cool/SET Vợt Cầu Lông Kumpoo B.Duck Cool.webp",
+            "img/SET Vợt Cầu Lông Kumpoo B.Duck Cool/Vợt Cầu Lông Kumpoo Power Balanced 11.webp",
+            "img/SET Vợt Cầu Lông Kumpoo B.Duck Cool/set-vot-cau-long-kumpoo-b-duck-cool-den-chinh-hang-1_1733522091.webp",
+            "img/SET Vợt Cầu Lông Kumpoo B.Duck Cool/set-vot-cau-long-kumpoo-b-duck-cool-den-chinh-hang-2_1733522096.webp",
+            "img/SET Vợt Cầu Lông Kumpoo B.Duck Cool/set-vot-cau-long-kumpoo-b-duck-cool-den-chinh-hang-3_1733522102.webp",
+            "img/SET Vợt Cầu Lông Kumpoo B.Duck Cool/set-vot-cau-long-kumpoo-b-duck-cool-den-chinh-hang-4_1733522107.webp",
+            "img/SET Vợt Cầu Lông Kumpoo B.Duck Cool/set-vot-cau-long-kumpoo-b-duck-cool-den-chinh-hang_1733522086.webp"
+        ],
+        "specs": {
+            "Trọng lượng": "82 ± 2g (4U)",
+            "Độ cứng": "8.3 ± 0.2mm (Cứng)",
+            "Điểm cân bằng": "305 ± 5mm (Nặng đầu)",
+            "Sức căng dây": "Tối đa 32 lbs",
+            "Chất liệu": "T800 Carbon Fiber",
+            "Chiều dài": "675 mm"
+        },
+        "description": "Phiên bản giới hạn B.Duck với thiết kế cực cool, khung vợt ổn định cho những cú đập cầu uy lực."
+    },
+    {
+        "id": "kumpoo-mountains-and-rivers-set",
+        "name": "SET Vợt Cầu Lông Kumpoo Mountains And Rivers",
+        "slug": "kumpoo-mountains-and-rivers-set",
+        "price": 2250000,
+        "original_price": 2850000,
+        "category": "Bộ Sản Phẩm (Set)",
+        "images": [
+            "img/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng.webp",
+            "img/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng/SET-vot-cau-long-Kumpoo-Moutains-And-Rivers-chinh-hang-5 (1).webp",
+            "img/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng/SET-vot-cau-long-Kumpoo-Moutains-And-Rivers-chinh-hang-6.webp",
+            "img/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng/set-vot-cau-long-kumpoo-moutains-and-rivers-chinh-hang-1.webp",
+            "img/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng/set-vot-cau-long-kumpoo-moutains-and-rivers-chinh-hang-2.webp",
+            "img/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng/set-vot-cau-long-kumpoo-moutains-and-rivers-chinh-hang-3.webp",
+            "img/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng/set-vot-cau-long-kumpoo-moutains-and-rivers-chinh-hang-4.webp",
+            "img/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng/set-vot-cau-long-kumpoo-moutains-and-rivers-chinh-hang-5.webp"
+        ],
+        "specs": {
+            "Trọng lượng": "82 ± 2g (4U)",
+            "Độ cứng": "Trung bình",
+            "Điểm cân bằng": "305 ± 3mm (Nặng đầu)",
+            "Sức căng dây": "Tối đa 32 lbs",
+            "Chất liệu": "Carbon 3K & T800",
+            "Chiều dài": "675 mm"
+        },
+        "description": "Phiên bản đặc biệt Mountains And Rivers, sử dụng chất liệu Carbon 3000 sợi cho độ bền cực cao."
+    },
+    {
+        "id": "kumpoo-shanhai-set",
+        "name": "SET Vợt Cầu Lông Kumpoo Shanhai",
+        "slug": "kumpoo-shanhai-set",
+        "price": 1850000,
+        "original_price": 2400000,
+        "category": "Bộ Sản Phẩm (Set)",
+        "images": [
+            "img/SET vợt cầu lông Kumpoo Shanhai/SET vợt cầu lông Kumpoo Shanhai.webp",
+            "img/SET vợt cầu lông Kumpoo Shanhai/set-vot-cau-long-kumpoo-shanhai-noi-dia-trung-1_1741026277.webp",
+            "img/SET vợt cầu lông Kumpoo Shanhai/set-vot-cau-long-kumpoo-shanhai-noi-dia-trung-2_1741026283.webp"
+        ],
+        "specs": {
+            "Trọng lượng": "4U (82 ± 2g)",
+            "Độ cứng": "Trung bình - Cứng",
+            "Điểm cân bằng": "305 ± 3mm (Nặng đầu)",
+            "Sức căng dây": "Tối đa 32 lbs",
+            "Chất liệu": "Carbon Graphite & Thermal foaming",
+            "Chiều dài": "675 mm"
+        },
+        "description": "Thiết kế lấy cảm hứng từ Sơn Hải Kinh, công nghệ Thermal foaming giúp tăng độ ổn định của khung."
+    },
+    {
+        "id": "kumpoo-k520-pro-plus",
+        "name": "Vợt Cầu Lông Kumpoo Power Control K520 Pro Plus",
+        "slug": "kumpoo-k520-pro-plus",
+        "price": 550000,
+        "original_price": 895000,
+        "category": "Vợt Cầu Lông",
+        "images": [
+            "img/Vợt Cầu Lông Kumpoo Power Control K520 Pro Plus - Xanh chính hãng/vot-cau-long-kumpoo-power-control-k520-pro-plus-xanh-chinh-hang-1_1759430213.webp",
+            "img/Vợt Cầu Lông Kumpoo Power Control K520 Pro Plus - Xanh chính hãng/vot-cau-long-kumpoo-power-control-k520-pro-plus-xanh-chinh-hang_1759430208.webp"
+        ],
+        "specs": {
+            "Trọng lượng": "82 ± 2g (4U)",
+            "Độ cứng": "8.5 (Trung bình)",
+            "Điểm cân bằng": "290 ± 5 mm (Cân bằng)",
+            "Sức căng dây": "Tối đa 30 lbs (~13.6kg)",
+            "Chất liệu": "Carbon Fiber",
+            "Chiều dài": "675 mm"
+        },
+        "description": "Phiên bản nâng cấp của K520 Pro với màu sắc mới và cải tiến về độ bền khung."
+    }
+]
