@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <style>
         /* ── Header right group ── */
@@ -216,14 +216,27 @@
 <body>
 
     <header>
-        <a href="#" class="logo-container">
-            <img src="img/kumpoo_logo_square-50x50.png" alt="Kumpoo Logo" id="site-logo">
+        <a href="#home" class="logo-container">
+            <img src="assets/img/kumpoo_logo_square-50x50.png" alt="Kumpoo Logo" id="site-logo">
             <span>KUMPOO SHOP</span>
         </a>
         <nav>
             <ul>
                 <li><a href="#home" data-vi="Trang Chủ" data-en="Home">Trang Chủ</a></li>
-                <li><a href="#products" data-vi="Sản Phẩm" data-en="Products">Sản Phẩm</a></li>
+                <li class="dropdown">
+                    <a href="#products" class="dropbtn" data-vi="Sản Phẩm" data-en="Products">Sản Phẩm <span style="font-size:0.8em">▼</span></a>
+                    <div class="dropdown-content">
+                        <a href="#products" onclick="document.querySelector('[data-category=\'all\']').click()" data-vi="Tất Cả" data-en="All">Tất Cả</a>
+                        <a href="#products" onclick="document.querySelector('[data-category=\'Vợt Cầu Lông\']').click()" data-vi="Vợt Cầu Lông" data-en="Rackets">Vợt Cầu Lông</a>
+                        <a href="#products" onclick="document.querySelector('[data-category=\'Bộ Sản Phẩm (Set)\']').click()" data-vi="Bộ Sản Phẩm" data-en="Sets">Bộ Sản Phẩm</a>
+                        <a href="#products" onclick="document.querySelector('[data-category=\'Giày Cầu Lông\']').click()" data-vi="Giày Cầu Lông" data-en="Shoes">Giày Cầu Lông</a>
+                        <a href="#products" onclick="document.querySelector('[data-category=\'Túi Cầu Lông\']').click()" data-vi="Túi / Balo" data-en="Bags">Túi / Balo</a>
+                        <a href="#products" onclick="document.querySelector('[data-category=\'Vớ Cầu Lông\']').click()" data-vi="Vớ Cầu Lông" data-en="Socks">Vớ Cầu Lông</a>
+                        <a href="#products" onclick="document.querySelector('[data-category=\'Dây Cước Cầu Lông\']').click()" data-vi="Dây Cước" data-en="Strings">Dây Cước</a>
+                        <a href="#products" onclick="document.querySelector('[data-category=\'Quấn Cán Cầu Lông\']').click()" data-vi="Quấn Cán" data-en="Grips">Quấn Cán</a>
+                    </div>
+                </li>
+                <li><a href="#blog" data-vi="Blog" data-en="Blog">Blog</a></li>
                 <li><a href="#about" data-vi="Về Kumpoo" data-en="About Kumpoo">Về Kumpoo</a></li>
                 <li><a href="#contact" data-vi="Liên Hệ" data-en="Contact">Liên Hệ</a></li>
             </ul>
@@ -231,6 +244,18 @@
 
         <!-- Right side controls -->
         <div class="header-right">
+
+            <!-- Search bar -->
+            <div class="header-search">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm..." data-vi-placeholder="Tìm kiếm..." data-en-placeholder="Search...">
+                <button aria-label="Search" id="searchBtn">🔍</button>
+            </div>
+
+            <!-- Wishlist -->
+            <button class="wishlist-btn" id="wishlistHeaderBtn" onclick="openWishlist()" title="Yêu thích">
+                ❤️
+                <span class="wishlist-badge" id="wishlistBadge" style="display:none; position:absolute; top:-5px; right:-5px; background:var(--primary-color); color:white; font-size:0.75rem; font-weight:700; width:18px; height:18px; border-radius:50%; align-items:center; justify-content:center;">0</span>
+            </button>
 
             <!-- Auth zone (shown after login) -->
             <div id="authZone" style="display:none; align-items:center; gap:8px;">
@@ -272,6 +297,7 @@
         <ul>
             <li><a href="#home" onclick="closeMobileNav()" data-vi="Trang Chủ" data-en="Home">Trang Chủ</a></li>
             <li><a href="#products" onclick="closeMobileNav()" data-vi="Sản Phẩm" data-en="Products">Sản Phẩm</a></li>
+            <li><a href="#blog" onclick="closeMobileNav()" data-vi="Blog" data-en="Blog">Blog</a></li>
             <li><a href="#about" onclick="closeMobileNav()" data-vi="Về Kumpoo" data-en="About Kumpoo">Về Kumpoo</a>
             </li>
             <li><a href="#contact" onclick="closeMobileNav()" data-vi="Liên Hệ" data-en="Contact">Liên Hệ</a></li>
@@ -295,7 +321,7 @@
                 <div class="promo-slide">
                     <div class="promo-banner" onclick="openProductModal('kumpoo-nine-tailed-fox')">
                         <div class="slide-bg"
-                            style="background-image: url('img/Vợt cầu lông Kumpoo Nine Tailed Fox (Cửu Vĩ Hồ)/vot-cau-long-kumpoo-nine-tailed-fox-cuu-vi-ho-noi-dia-trung-2_1705700315.webp'); background-color: rgb(4,8,30);">
+                            style="background-image: url('assets/img/Vợt cầu lông Kumpoo Nine Tailed Fox (Cửu Vĩ Hồ)/vot-cau-long-kumpoo-nine-tailed-fox-cuu-vi-ho-noi-dia-trung-2_1705700315.webp'); background-color: rgb(4,8,30);">
                         </div>
                         <div class="slide-overlay"
                             style="background: linear-gradient(90deg, rgba(4,8,30,0.93) 0%, rgba(4,8,30,0.72) 45%, rgba(4,8,30,0.1) 75%, transparent 100%);">
@@ -320,7 +346,7 @@
                 <div class="promo-slide">
                     <div class="promo-banner" onclick="openProductModal('kumpoo-giay-kh-g826s')">
                         <div class="slide-bg"
-                            style="background-image: url('img/Giày cầu lông Kumpoo KH-G826S/giay-cau-long-kumpoo-kh-g826s-trang-chinh-hang_1720401434.webp'); background-color: rgb(20,8,2);">
+                            style="background-image: url('assets/img/Giày cầu lông Kumpoo KH-G826S/giay-cau-long-kumpoo-kh-g826s-trang-chinh-hang_1720401434.webp'); background-color: rgb(20,8,2);">
                         </div>
                         <div class="slide-overlay"
                             style="background: linear-gradient(90deg, rgba(20,8,2,0.93) 0%, rgba(20,8,2,0.72) 45%, rgba(20,8,2,0.1) 75%, transparent 100%);">
@@ -345,7 +371,7 @@
                 <div class="promo-slide">
                     <div class="promo-banner" onclick="openProductModal('kumpoo-balo-kb369')">
                         <div class="slide-bg"
-                            style="background-image: url('img/Túi cầu lông Kumpoo KB369/balo-cau-long-kumpoo-kb369-den-chinh-hang_1728074251.webp'); background-color: rgb(2,12,14);">
+                            style="background-image: url('assets/img/Túi cầu lông Kumpoo KB369/balo-cau-long-kumpoo-kb369-den-chinh-hang_1728074251.webp'); background-color: rgb(2,12,14);">
                         </div>
                         <div class="slide-overlay"
                             style="background: linear-gradient(90deg, rgba(2,12,14,0.94) 0%, rgba(2,12,14,0.72) 45%, rgba(2,12,14,0.1) 75%, transparent 100%);">
@@ -371,7 +397,7 @@
                 <div class="promo-slide">
                     <div class="promo-banner" onclick="openProductModal('kumpoo-vo-kso-07-do')">
                         <div class="slide-bg"
-                            style="background-image: url('img/Vớ Cầu Lông Kumpoo KSO 07 Đỏ Chính Hãng/vo-cau-long-kumpoo-kso-07-do-chinh-hang_1719449364.webp'); background-color: rgb(18,2,2);">
+                            style="background-image: url('assets/img/Vớ Cầu Lông Kumpoo KSO 07 Đỏ Chính Hãng/vo-cau-long-kumpoo-kso-07-do-chinh-hang_1719449364.webp'); background-color: rgb(18,2,2);">
                         </div>
                         <div class="slide-overlay"
                             style="background: linear-gradient(90deg, rgba(18,2,2,0.94) 0%, rgba(18,2,2,0.72) 45%, rgba(18,2,2,0.1) 75%, transparent 100%);">
@@ -411,8 +437,48 @@
 
         </section>
 
+        <!-- ===== BLOG SECTION ===== -->
+        <section class="container" id="blog" style="margin-top: 80px; margin-bottom: 80px;">
+            <div class="section-title">
+                <h2 data-vi="Tin Tức & Tuýp Chơi Cầu" data-en="Badminton News & Tips">Tin Tức & Tuýp Chơi Cầu</h2>
+            </div>
+            <div class="blog-grid">
+                <!-- Bài 1: Đánh giá -->
+                <div class="blog-card">
+                    <img src="assets/img/01-2.jpg" alt="Kumpoo K520 Pro" class="blog-img">
+                    <div class="blog-content">
+                        <span class="blog-category" data-vi="Góc Review" data-en="Review Corner">Góc Review</span>
+                        <h4 class="blog-title" data-vi='Review Vợt Kumpoo K520 Pro: Siêu Phẩm "Quốc Dân" Cho Người Mới' data-en='Kumpoo K520 Pro Review: The "National" Choice for Beginners'>Review Vợt Kumpoo K520 Pro: Siêu Phẩm "Quốc Dân" Cho Người Mới</h4>
+                        <p class="blog-desc" data-vi="Sở hữu thiết kế bắt mắt, khung vợt dẻo dai trợ lực tốt cùng độ bền đáng nể, Kumpoo K520 Pro đang là sự lựa chọn số 1 cho người mới tập chơi..." data-en="Featuring an eye-catching design, flexible frame, and remarkable durability, the K520 Pro is the #1 choice for beginners...">Sở hữu thiết kế bắt mắt, khung vợt dẻo dai trợ lực tốt cùng độ bền đáng nể, Kumpoo K520 Pro đang là sự lựa chọn số 1 cho người mới tập chơi...</p>
+                        <a href="#blog" class="blog-readmore" data-vi="Đọc tiếp →" data-en="Read more →">Đọc tiếp →</a>
+                    </div>
+                </div>
 
+                <!-- Bài 2: Kiến thức -->
+                <div class="blog-card">
+                    <!-- Placeholder using an existing image -->
+                    <img src="assets/img/Vợt cầu lông Kumpoo Nine Tailed Fox (Cửu Vĩ Hồ)/vot-cau-long-kumpoo-nine-tailed-fox-cuu-vi-ho-noi-dia-trung-2_1705700315.webp" alt="Căng cước vợt cầu lông" class="blog-img">
+                    <div class="blog-content">
+                        <span class="blog-category" data-vi="Kiến Thức Cầu Lông" data-en="Badminton Knowledge">Kiến Thức Cầu Lông</span>
+                        <h4 class="blog-title" data-vi="Căng Cước Vợt Bao Nhiêu Kg Là Vừa Tay? Lời Khuyên Từ Chuyên Gia" data-en="What is the Ideal Badminton String Tension? Expert Advice">Căng Cước Vợt Bao Nhiêu Kg Là Vừa Tay? Lời Khuyên Từ Chuyên Gia</h4>
+                        <p class="blog-desc" data-vi="Tìm hiểu thông số sức căng (tension) phù hợp với cơ địa của bạn. Việc căng cao số ký không làm bạn đập mạnh hơn mà có thể gây chấn thương cổ tay..." data-en="Discover the perfect string tension. High tension doesn't mean a harder smash, and playing above your level could injure your wrist...">Tìm hiểu thông số sức căng (tension) phù hợp với cơ địa của bạn. Việc căng cao số ký không làm bạn đập mạnh hơn mà có thể gây chấn thương cổ tay...</p>
+                        <a href="#blog" class="blog-readmore" data-vi="Đọc tiếp →" data-en="Read more →">Đọc tiếp →</a>
+                    </div>
+                </div>
 
+                <!-- Bài 3: Kỹ thuật -->
+                <div class="blog-card">
+                    <!-- Placeholder using an existing image -->
+                    <img src="assets/img/Giày cầu lông Kumpoo KH-G826S/giay-cau-long-kumpoo-kh-g826s-trang-chinh-hang_1720401434.webp" alt="Kỹ thuật đập cầu" class="blog-img">
+                    <div class="blog-content">
+                        <span class="blog-category" data-vi="Kỹ Thuật Đỉnh Cao" data-en="Pro Techniques">Kỹ Thuật Đỉnh Cao</span>
+                        <h4 class="blog-title" data-vi="3 Lỗi Sai Khóa Chết Uy Lực Trong Cú Đập Cầu (Smash) Của Bạn" data-en="3 Critical Mistakes That Kill Your Smash Power">3 Lỗi Sai Khóa Chết Uy Lực Trong Cú Đập Cầu (Smash) Của Bạn</h4>
+                        <p class="blog-desc" data-vi="Đập cầu là kỹ thuật ghi điểm chủ lực, nhưng việc sai tư thế bước chân, gồng cứng khớp vai hay chọn điểm tiếp xúc cầu quá thấp sẽ triệt tiêu 50% uy lực..." data-en="The smash is a primary point-scorer, but wrong footwork, a stiff shoulder, or hitting the shuttle down low can drastically reduce power...">Đập cầu là kỹ thuật ghi điểm chủ lực, nhưng việc sai tư thế bước chân, gồng cứng khớp vai hay chọn điểm tiếp xúc cầu quá thấp sẽ triệt tiêu 50% uy lực...</p>
+                        <a href="#blog" class="blog-readmore" data-vi="Đọc tiếp →" data-en="Read more →">Đọc tiếp →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section class="container" id="about" style="margin-top: 80px; margin-bottom: 80px;">
 
@@ -421,7 +487,7 @@
             </div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;">
                 <div>
-                    <img src="img/01-2.jpg" alt="Kumpoo Brand"
+                    <img src="assets/img/01-2.jpg" alt="Kumpoo Brand"
                         style="width: 100%; border-radius: 20px; box-shadow: var(--shadow);">
                 </div>
                 <div>
@@ -490,6 +556,47 @@
 
             <div class="product-grid" id="productGrid">
                 <!-- Sản phẩm sẽ được đổ vào đây bằng JavaScript -->
+            </div>
+        </section>
+
+        <!-- ===== REVIEW SECTION ===== -->
+        <section class="container" id="reviews" style="margin-bottom: 80px;">
+            <div class="section-title">
+                <h2 data-vi="Khách Hàng Nói Gì Về Chúng Tôi" data-en="Customer Reviews">Khách Hàng Nói Gì Về Chúng Tôi</h2>
+            </div>
+            <div class="review-slider-wrapper">
+                <button class="review-nav-btn prev" id="reviewPrev" aria-label="Previous Review">❮</button>
+                <div class="review-slider-container" id="reviewSliderContainer">
+                    <div class="review-slider" id="reviewSlider">
+                    <!-- Review 1 -->
+                    <div class="review-card">
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <p class="review-text" data-vi='"Vợt K520 Pro đánh rất thoát cầu, phù hợp cho người mới! Giao hàng siêu nhanh."' data-en='"K520 Pro racket is great for beginners! Super fast delivery."'>"Vợt K520 Pro đánh rất thoát cầu, phù hợp cho người mới! Giao hàng siêu nhanh."</p>
+                        <div class="review-author">- Minh Anh -</div>
+                    </div>
+                    <!-- Review 2 -->
+                    <div class="review-card">
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <p class="review-text" data-vi='"Giày Kumpoo đi êm, ôm chân, giá cả lại rất hợp lý. Nhất định sẽ giới thiệu bạn bè."' data-en='"Kumpoo shoes are comfortable and reasonably priced. Will definitely recommend."'>"Giày Kumpoo đi êm, ôm chân, giá cả lại rất hợp lý. Nhất định sẽ giới thiệu bạn bè."</p>
+                        <div class="review-author">- Đức Huy -</div>
+                    </div>
+                    <!-- Review 3 -->
+                    <div class="review-card">
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <p class="review-text" data-vi='"Mua trọn bộ combo từ vợt, giày đến balo đều rất ưng ý. Shop tư vấn nhiệt tình!"' data-en='"Bought a full combo. Very satisfied with the products and enthusiastic support!"'>"Mua trọn bộ combo từ vợt, giày đến balo đều rất ưng ý. Shop tư vấn nhiệt tình!"</p>
+                        <div class="review-author">- Tuấn Tú -</div>
+                    </div>
+                    <!-- Review 4 -->
+                    <div class="review-card">
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <p class="review-text" data-vi='"Thiết kế vợt đẹp mắt, túi vải đi kèm dày dặn. Chắc chắn sẽ tiếp tục ủng hộ Kumpoo."' data-en='"Beautiful racket design, thick included bag. Will definitely continue to support Kumpoo."'>"Thiết kế vợt đẹp mắt, túi vải đi kèm dày dặn. Chắc chắn sẽ tiếp tục ủng hộ Kumpoo."</p>
+                    </div>
+                </div>
+                <button class="review-nav-btn next" id="reviewNext" aria-label="Next Review">❯</button>
+            </div>
+            
+            <div class="review-dots" id="reviewDots">
+                <!-- Dots will be generated by JS -->
             </div>
         </section>
 
@@ -567,6 +674,18 @@
         </div>
     </div>
 
+    <!-- ===== WISHLIST SIDEBAR ===== -->
+    <div id="wishlistOverlay" class="cart-overlay" onclick="closeWishlist()" style="z-index: 1805;"></div>
+    <div id="wishlistSidebar" class="cart-sidebar" style="z-index: 1905;">
+        <div class="cart-header">
+            <h3 data-vi="Sản Phẩm Yêu Thích 🤍" data-en="My Wishlist 🤍">Sản Phẩm Yêu Thích 🤍</h3>
+            <button class="cart-close-btn" onclick="closeWishlist()">&#x2715;</button>
+        </div>
+        <div class="cart-items" id="wishlistItemsContainer">
+            <!-- items injected by JS -->
+        </div>
+    </div>
+
     <!-- ===== CART SIDEBAR ===== -->
     <div id="cartOverlay" class="cart-overlay" onclick="closeCart()"></div>
     <div id="cartSidebar" class="cart-sidebar">
@@ -589,46 +708,93 @@
     </div>
 
     <footer id="contact">
-        <div class="logo-container" style="justify-content: center; margin-bottom: 30px;">
-            <img src="img/kumpoo_logo_square-50x50.png" alt="Kumpoo Logo">
-            <span style="color: white;">KUMPOO BADMINTON</span>
-        </div>
+        <div class="footer-container">
+            <!-- Cột 1: Giới thiệu -->
+            <div class="footer-col">
+                <div class="logo-container" style="justify-content: flex-start; margin-bottom: 15px;">
+                    <img src="img/kumpoo_logo_square-50x50.png" alt="Kumpoo Logo" style="width: 45px; height: 45px; border-radius: 10px;">
+                    <span style="color: white; font-weight: 800; font-size: 1.4rem;">KUMPOO</span>
+                </div>
+                <p class="footer-desc" data-vi="Thương hiệu cầu lông hàng đầu đến từ Nhật Bản, mang đến các sản phẩm chất lượng cao, bền bỉ và tối ưu hiệu suất cho mọi người chơi." data-en="Top badminton brand from Japan, offering high-quality, durable, and optimized performance products for all players.">Thương hiệu cầu lông hàng đầu đến từ Nhật Bản, mang đến các sản phẩm chất lượng cao, bền bỉ và tối ưu hiệu suất cho mọi người chơi.</p>
+            </div>
 
-        <div style="margin-bottom: 30px;">
-            <p style="color: #888; margin-bottom: 15px; font-size: 0.9rem;" data-vi="Liên hệ hỗ trợ:"
-                data-en="Contact support:">Liên hệ hỗ trợ:</p>
-            <div style="display: flex; justify-content: center; gap: 15px;">
-                <a href="https://zalo.me/your_phone_number" target="_blank"
-                    style="text-decoration: none; color: #ccc; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; transition: 0.3s;"
-                    onmouseover="this.style.color='#0068ff'" onmouseout="this.style.color='#ccc'">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Icon_Zalo.svg/1024px-Icon_Zalo.svg.png"
-                        alt="Zalo" style="width: 18px; filter: grayscale(100%); transition: 0.3s;"
-                        onmouseover="this.style.filter='grayscale(0%)'"
-                        onmouseout="this.style.filter='grayscale(100%)'">
-                    Zalo
-                </a>
-                <span style="color: #444;">|</span>
-                <a href="https://m.me/your_fb_page" target="_blank"
-                    style="text-decoration: none; color: #ccc; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; transition: 0.3s;"
-                    onmouseover="this.style.color='#0084FF'" onmouseout="this.style.color='#ccc'">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Facebook_Messenger_logo_2020.svg"
-                        alt="Messenger" style="width: 18px; filter: grayscale(100%); transition: 0.3s;"
-                        onmouseover="this.style.filter='grayscale(0%)'"
-                        onmouseout="this.style.filter='grayscale(100%)'">
-                    Messenger
-                </a>
+            <!-- Cột 2: Hỗ trợ -->
+            <div class="footer-col">
+                <h4 data-vi="Hỗ Trợ Khách Hàng" data-en="Customer Support">Hỗ Trợ Khách Hàng</h4>
+                <ul class="footer-links">
+                    <li><a href="#" data-vi="Hướng dẫn chọn vợt" data-en="Racket Selection Guide">Hướng dẫn chọn vợt</a></li>
+                    <li><a href="#" data-vi="Hướng dẫn mua hàng" data-en="How to Buy">Hướng dẫn mua hàng</a></li>
+                    <li><a href="#" data-vi="Chính sách bảo hành" data-en="Warranty Policy">Chính sách bảo hành</a></li>
+                    <li><a href="#" data-vi="Chính sách đổi trả" data-en="Return Policy">Chính sách đổi trả</a></li>
+                </ul>
+            </div>
+
+            <!-- Cột 3: Liên kết -->
+            <div class="footer-col">
+                <h4 data-vi="Liên Kết Nhanh" data-en="Quick Links">Liên Kết Nhanh</h4>
+                <ul class="footer-links">
+                    <li><a href="#home" data-vi="Trang chủ" data-en="Home">Trang chủ</a></li>
+                    <li><a href="#products" data-vi="Tất cả sản phẩm" data-en="All Products">Tất cả sản phẩm</a></li>
+                    <li><a href="#blog" data-vi="Tin tức & Sự kiện" data-en="News & Events">Tin tức & Sự kiện</a></li>
+                    <li><a href="#about" data-vi="Về chúng tôi" data-en="About Us">Về chúng tôi</a></li>
+                </ul>
+            </div>
+
+            <!-- Cột 4: Liên hệ -->
+            <div class="footer-col">
+                <h4 data-vi="Thông Tin Liên Hệ" data-en="Contact Info">Thông Tin Liên Hệ</h4>
+                <ul class="footer-contact">
+                    <li>📍 <span data-vi="Nam Hong Dong Anh Ha Noi" data-en="Nam Hong Dong Anh Ha Noi">Nam Hong Dong Anh Ha Noi</span></li>
+                    <li>📞 <span>0123.456.789</span></li>
+                    <li>📧 <span>kumpoo@gmail.com</span></li>
+                </ul>
+                <div class="footer-social">
+                    <a href="https://zalo.me" target="_blank" title="Zalo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Icon_Zalo.svg/1024px-Icon_Zalo.svg.png" alt="Zalo"></a>
+                    <a href="https://facebook.com" target="_blank" title="Facebook"><img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Facebook_Messenger_logo_2020.svg" alt="Messenger"></a>
+                </div>
             </div>
         </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Kumpoo Badminton Shop. All rights reserved.</p>
+        </div>
 
-        <p style="color: #555; font-size: 0.8rem;">&copy; 2026 Kumpoo Badminton Shop. All rights reserved.</p>
-        <p style="color: #444; font-size: 0.75rem; margin-top: 5px;" data-vi="Thương hiệu cầu lông đến từ Nhật Bản."
-            data-en="Japan's badminton brand.">Thương hiệu cầu lông đến từ Nhật Bản.</p>
+        <!-- Chatbot Widget -->
+        <div class="chatbot-container" id="chatbotContainer">
+            <div class="chat-window" id="chatWindow">
+                <div class="chat-header">
+                    <div>
+                        <img src="assets/img/kumpoo_logo_square-50x50.png" alt="Bot Logo">
+                        <div class="chat-title-group">
+                            <span class="chat-title" data-vi="Kumpoo Trợ Lý" data-en="Kumpoo Assistant">Kumpoo Trợ Lý</span>
+                            <span class="chat-status" data-vi="Đang hoạt động" data-en="Online">Đang hoạt động</span>
+                        </div>
+                    </div>
+                    <button class="chat-close-btn" id="closeChatBtn" onclick="toggleChat()">&times;</button>
+                </div>
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Messages go here -->
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="chatInput" placeholder="Nhập tin nhắn..." data-vi-placeholder="Nhập tin nhắn..." data-en-placeholder="Type a message...">
+                    <button class="chat-send-btn" id="sendChatBtn" onclick="sendChatMessage()">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                    </button>
+                </div>
+            </div>
+            <button class="chat-toggle-btn" id="chatToggleBtn" onclick="toggleChat()">
+                <span class="chat-icon">💬</span>
+                <span class="chat-badge" id="chatBadge" style="display:none;">1</span>
+            </button>
+        </div>
     </footer>
 
     <!-- JavaScript -->
-    <script src="products.js"></script>
-    <script src="script.js"></script>
-    <script src="cart-auth.js"></script>
+    <script src="assets/js/products.js"></script>
+    <script src="assets/js/wishlist.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/cart-auth.js"></script>
+    <script src="assets/js/chatbot.js"></script>
 </body>
 
 </html>

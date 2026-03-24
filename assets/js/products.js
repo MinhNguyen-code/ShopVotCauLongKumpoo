@@ -10,39 +10,39 @@ const productsData = [
             {
                 "color": "Đen",
                 "images": [
-                    "img/Vợt Cầu Lông Kumpoo Power Balanced 11/Black/vot-cau-long-kumpoo-power-balanced-11-den-chinh-hang-1.webp"
+                    "assets/img/Vợt Cầu Lông Kumpoo Power Balanced 11/Black/vot-cau-long-kumpoo-power-balanced-11-den-chinh-hang-1.webp"
                 ]
             },
             {
                 "color": "Xanh Dương",
                 "images": [
-                    "img/Vợt Cầu Lông Kumpoo Power Balanced 11/Blue/img-2918-9cadb908547f4290a4c2852ff566ccb6-master_1712622188.webp",
-                    "img/Vợt Cầu Lông Kumpoo Power Balanced 11/Blue/vot-cau-long-kumpoo-balanced-11-xanh-1_1712258958.webp"
+                    "assets/img/Vợt Cầu Lông Kumpoo Power Balanced 11/Blue/img-2918-9cadb908547f4290a4c2852ff566ccb6-master_1712622188.webp",
+                    "assets/img/Vợt Cầu Lông Kumpoo Power Balanced 11/Blue/vot-cau-long-kumpoo-balanced-11-xanh-1_1712258958.webp"
                 ]
             },
             {
                 "color": "Hồng",
                 "images": [
-                    "img/Vợt Cầu Lông Kumpoo Power Balanced 11/Pink/vot-cau-long-kumpoo-balanced-11-hong-1_1712258685.webp",
-                    "img/Vợt Cầu Lông Kumpoo Power Balanced 11/Pink/vot-cau-long-kumpoo-balanced-11-hong-2_1712258693.webp",
-                    "img/Vợt Cầu Lông Kumpoo Power Balanced 11/Pink/vot-cau-long-kumpoo-balanced-11-hong_1712258670.webp"
+                    "assets/img/Vợt Cầu Lông Kumpoo Power Balanced 11/Pink/vot-cau-long-kumpoo-balanced-11-hong-1_1712258685.webp",
+                    "assets/img/Vợt Cầu Lông Kumpoo Power Balanced 11/Pink/vot-cau-long-kumpoo-balanced-11-hong-2_1712258693.webp",
+                    "assets/img/Vợt Cầu Lông Kumpoo Power Balanced 11/Pink/vot-cau-long-kumpoo-balanced-11-hong_1712258670.webp"
                 ]
             },
             {
                 "color": "Trắng",
                 "images": [
-                    "img/Vợt Cầu Lông Kumpoo Power Balanced 11/White/vot-cau-long-kumpoo-power-balanced-11-chinh-hang-1.webp",
-                    "img/Vợt Cầu Lông Kumpoo Power Balanced 11/White/vot-cau-long-kumpoo-power-balanced-11-chinh-hang-2.webp",
-                    "img/Vợt Cầu Lông Kumpoo Power Balanced 11/White/vot-cau-long-kumpoo-power-balanced-11-chinh-hang-3.webp",
-                    "img/Vợt Cầu Lông Kumpoo Power Balanced 11/White/vot-cau-long-kumpoo-power-balanced-11-chinh-hang-4.webp"
+                    "assets/img/Vợt Cầu Lông Kumpoo Power Balanced 11/White/vot-cau-long-kumpoo-power-balanced-11-chinh-hang-1.webp",
+                    "assets/img/Vợt Cầu Lông Kumpoo Power Balanced 11/White/vot-cau-long-kumpoo-power-balanced-11-chinh-hang-2.webp",
+                    "assets/img/Vợt Cầu Lông Kumpoo Power Balanced 11/White/vot-cau-long-kumpoo-power-balanced-11-chinh-hang-3.webp",
+                    "assets/img/Vợt Cầu Lông Kumpoo Power Balanced 11/White/vot-cau-long-kumpoo-power-balanced-11-chinh-hang-4.webp"
                 ]
             }
         ],
         "images": [
-            "img/Vợt Cầu Lông Kumpoo Power Balanced 11/Black/vot-cau-long-kumpoo-power-balanced-11-den-chinh-hang-1.webp",
-            "img/Vợt Cầu Lông Kumpoo Power Balanced 11/Blue/vot-cau-long-kumpoo-balanced-11-xanh-1_1712258958.webp",
-            "img/Vợt Cầu Lông Kumpoo Power Balanced 11/Pink/vot-cau-long-kumpoo-balanced-11-hong-1_1712258685.webp",
-            "img/Vợt Cầu Lông Kumpoo Power Balanced 11/White/vot-cau-long-kumpoo-power-balanced-11-chinh-hang-1.webp"
+            "assets/img/Vợt Cầu Lông Kumpoo Power Balanced 11/Black/vot-cau-long-kumpoo-power-balanced-11-den-chinh-hang-1.webp",
+            "assets/img/Vợt Cầu Lông Kumpoo Power Balanced 11/Blue/vot-cau-long-kumpoo-balanced-11-xanh-1_1712258958.webp",
+            "assets/img/Vợt Cầu Lông Kumpoo Power Balanced 11/Pink/vot-cau-long-kumpoo-balanced-11-hong-1_1712258685.webp",
+            "assets/img/Vợt Cầu Lông Kumpoo Power Balanced 11/White/vot-cau-long-kumpoo-power-balanced-11-chinh-hang-1.webp"
         ],
         "specs": {
             "Trọng lượng": "82 + 2 g (4U)",
@@ -62,11 +62,11 @@ const productsData = [
         "original_price": 850000,
         "category": "Vợt Cầu Lông",
         "images": [
-            "img/Vợt Cầu Lông Kumpoo YangZhou Chính Hãng/vot-cau-long-kumpoo-yangzhou-chinh-hang_1742841353.webp",
-            "img/Vợt Cầu Lông Kumpoo YangZhou Chính Hãng/vot-cau-long-kumpoo-yangzhou-chinh-hang-1_1742841358.webp",
-            "img/Vợt Cầu Lông Kumpoo YangZhou Chính Hãng/vot-cau-long-kumpoo-yangzhou-chinh-hang-2_1742841363.webp",
-            "img/Vợt Cầu Lông Kumpoo YangZhou Chính Hãng/vot-cau-long-kumpoo-yangzhou-chinh-hang-3_1742841368.webp",
-            "img/Vợt Cầu Lông Kumpoo YangZhou Chính Hãng/vot-cau-long-kumpoo-yangzhou-chinh-hang-4_1742841373.webp"
+            "assets/img/Vợt Cầu Lông Kumpoo YangZhou Chính Hãng/vot-cau-long-kumpoo-yangzhou-chinh-hang_1742841353.webp",
+            "assets/img/Vợt Cầu Lông Kumpoo YangZhou Chính Hãng/vot-cau-long-kumpoo-yangzhou-chinh-hang-1_1742841358.webp",
+            "assets/img/Vợt Cầu Lông Kumpoo YangZhou Chính Hãng/vot-cau-long-kumpoo-yangzhou-chinh-hang-2_1742841363.webp",
+            "assets/img/Vợt Cầu Lông Kumpoo YangZhou Chính Hãng/vot-cau-long-kumpoo-yangzhou-chinh-hang-3_1742841368.webp",
+            "assets/img/Vợt Cầu Lông Kumpoo YangZhou Chính Hãng/vot-cau-long-kumpoo-yangzhou-chinh-hang-4_1742841373.webp"
         ],
         "specs": {
             "Trọng lượng": "82 ± 2g (4U)",
@@ -86,11 +86,11 @@ const productsData = [
         "original_price": 850000,
         "category": "Vợt Cầu Lông",
         "images": [
-            "img/Vợt Cầu Lông Kumpoo JingZhou Chính Hãng/vot-cau-long-kumpoo-jingzhou-chinh-hang_1742841785.webp",
-            "img/Vợt Cầu Lông Kumpoo JingZhou Chính Hãng/vot-cau-long-kumpoo-jingzhou-chinh-hang-1_1742841803.webp",
-            "img/Vợt Cầu Lông Kumpoo JingZhou Chính Hãng/vot-cau-long-kumpoo-jingzhou-chinh-hang-2_1742841808.webp",
-            "img/Vợt Cầu Lông Kumpoo JingZhou Chính Hãng/vot-cau-long-kumpoo-jingzhou-chinh-hang-3_1742841814.webp",
-            "img/Vợt Cầu Lông Kumpoo JingZhou Chính Hãng/vot-cau-long-kumpoo-jingzhou-chinh-hang-4_1742841821.webp"
+            "assets/img/Vợt Cầu Lông Kumpoo JingZhou Chính Hãng/vot-cau-long-kumpoo-jingzhou-chinh-hang_1742841785.webp",
+            "assets/img/Vợt Cầu Lông Kumpoo JingZhou Chính Hãng/vot-cau-long-kumpoo-jingzhou-chinh-hang-1_1742841803.webp",
+            "assets/img/Vợt Cầu Lông Kumpoo JingZhou Chính Hãng/vot-cau-long-kumpoo-jingzhou-chinh-hang-2_1742841808.webp",
+            "assets/img/Vợt Cầu Lông Kumpoo JingZhou Chính Hãng/vot-cau-long-kumpoo-jingzhou-chinh-hang-3_1742841814.webp",
+            "assets/img/Vợt Cầu Lông Kumpoo JingZhou Chính Hãng/vot-cau-long-kumpoo-jingzhou-chinh-hang-4_1742841821.webp"
         ],
         "specs": {
             "Trọng lượng": "82 ± 2g (4U)",
@@ -109,11 +109,11 @@ const productsData = [
         "original_price": 890000,
         "category": "Vợt Cầu Lông",
         "images": [
-            "img/Vợt cầu lông Kumpoo Nine Tailed Fox (Cửu Vĩ Hồ)/vot-cau-long-kumpoo-nine-tailed-fox-cuu-vi-ho-noi-dia-trung_1724891850.webp",
-            "img/Vợt cầu lông Kumpoo Nine Tailed Fox (Cửu Vĩ Hồ)/vot-cau-long-kumpoo-nine-tailed-fox-cuu-vi-ho-noi-dia-trung-10_1705716574.webp",
-            "img/Vợt cầu lông Kumpoo Nine Tailed Fox (Cửu Vĩ Hồ)/vot-cau-long-kumpoo-nine-tailed-fox-cuu-vi-ho-noi-dia-trung-2_1705700315.webp",
-            "img/Vợt cầu lông Kumpoo Nine Tailed Fox (Cửu Vĩ Hồ)/vot-cau-long-kumpoo-nine-tailed-fox-cuu-vi-ho-noi-dia-trung-3_1705700309.webp",
-            "img/Vợt cầu lông Kumpoo Nine Tailed Fox (Cửu Vĩ Hồ)/vot-cau-long-kumpoo-nine-tailed-fox-cuu-vi-ho-noi-dia-trung-4_1705700469.webp"
+            "assets/img/Vợt cầu lông Kumpoo Nine Tailed Fox (Cửu Vĩ Hồ)/vot-cau-long-kumpoo-nine-tailed-fox-cuu-vi-ho-noi-dia-trung_1724891850.webp",
+            "assets/img/Vợt cầu lông Kumpoo Nine Tailed Fox (Cửu Vĩ Hồ)/vot-cau-long-kumpoo-nine-tailed-fox-cuu-vi-ho-noi-dia-trung-10_1705716574.webp",
+            "assets/img/Vợt cầu lông Kumpoo Nine Tailed Fox (Cửu Vĩ Hồ)/vot-cau-long-kumpoo-nine-tailed-fox-cuu-vi-ho-noi-dia-trung-2_1705700315.webp",
+            "assets/img/Vợt cầu lông Kumpoo Nine Tailed Fox (Cửu Vĩ Hồ)/vot-cau-long-kumpoo-nine-tailed-fox-cuu-vi-ho-noi-dia-trung-3_1705700309.webp",
+            "assets/img/Vợt cầu lông Kumpoo Nine Tailed Fox (Cửu Vĩ Hồ)/vot-cau-long-kumpoo-nine-tailed-fox-cuu-vi-ho-noi-dia-trung-4_1705700469.webp"
         ],
         "specs": {
             "Trọng lượng": "82 ± 2g (4U)",
@@ -132,7 +132,7 @@ const productsData = [
         "original_price": 850000,
         "category": "Vợt Cầu Lông",
         "images": [
-            "img/Set Vợt Cầu Lông Kumpoo K520 Pro/Set Vợt Cầu Lông Kumpoo K520 Pro.webp"
+            "assets/img/Set Vợt Cầu Lông Kumpoo K520 Pro/Set Vợt Cầu Lông Kumpoo K520 Pro.webp"
         ],
         "specs": {
             "Trọng lượng": "82 + 2 g (4U)",
@@ -152,12 +152,12 @@ const productsData = [
         "original_price": 1200000,
         "category": "Vợt Cầu Lông",
         "images": [
-            "img/Vợt Cầu Lông Kumpoo Power Control R89/Vợt Cầu Lông Kumpoo Power Control R89.webp",
-            "img/Vợt Cầu Lông Kumpoo Power Control R89/vot-cau-long-kumpoo-power-control-r89-den-chinh-hang-1_1710547317.webp",
-            "img/Vợt Cầu Lông Kumpoo Power Control R89/vot-cau-long-kumpoo-power-control-r89-den-chinh-hang-2_1710551769.webp",
-            "img/Vợt Cầu Lông Kumpoo Power Control R89/vot-cau-long-kumpoo-power-control-r89-den-chinh-hang-3_1710551763.webp",
-            "img/Vợt Cầu Lông Kumpoo Power Control R89/vot-cau-long-kumpoo-power-control-r89-den-chinh-hang-4_1710551822.webp",
-            "img/Vợt Cầu Lông Kumpoo Power Control R89/vot-cau-long-kumpoo-power-control-r89-den-chinh-hang_1710539958.webp"
+            "assets/img/Vợt Cầu Lông Kumpoo Power Control R89/Vợt Cầu Lông Kumpoo Power Control R89.webp",
+            "assets/img/Vợt Cầu Lông Kumpoo Power Control R89/vot-cau-long-kumpoo-power-control-r89-den-chinh-hang-1_1710547317.webp",
+            "assets/img/Vợt Cầu Lông Kumpoo Power Control R89/vot-cau-long-kumpoo-power-control-r89-den-chinh-hang-2_1710551769.webp",
+            "assets/img/Vợt Cầu Lông Kumpoo Power Control R89/vot-cau-long-kumpoo-power-control-r89-den-chinh-hang-3_1710551763.webp",
+            "assets/img/Vợt Cầu Lông Kumpoo Power Control R89/vot-cau-long-kumpoo-power-control-r89-den-chinh-hang-4_1710551822.webp",
+            "assets/img/Vợt Cầu Lông Kumpoo Power Control R89/vot-cau-long-kumpoo-power-control-r89-den-chinh-hang_1710539958.webp"
         ],
         "specs": {
             "Trọng lượng": "82 + 2 g (4U)",
@@ -177,10 +177,10 @@ const productsData = [
         "original_price": 950000,
         "category": "Vợt Cầu Lông",
         "images": [
-            "img/Vợt cầu lông Kumpoo Power Control E58LS new/Vợt cầu lông Kumpoo Power Control E58LS new.webp",
-            "img/Vợt cầu lông Kumpoo Power Control E58LS new/vot-cau-long-kumpoo-power-control-e58ls-new-chinh-hang-1_1709842920.webp",
-            "img/Vợt cầu lông Kumpoo Power Control E58LS new/vot-cau-long-kumpoo-power-control-e58ls-new-chinh-hang-2_1709842926.webp",
-            "img/Vợt cầu lông Kumpoo Power Control E58LS new/vot-cau-long-kumpoo-power-control-e58ls-new-chinh-hang-3_1710558930.webp"
+            "assets/img/Vợt cầu lông Kumpoo Power Control E58LS new/Vợt cầu lông Kumpoo Power Control E58LS new.webp",
+            "assets/img/Vợt cầu lông Kumpoo Power Control E58LS new/vot-cau-long-kumpoo-power-control-e58ls-new-chinh-hang-1_1709842920.webp",
+            "assets/img/Vợt cầu lông Kumpoo Power Control E58LS new/vot-cau-long-kumpoo-power-control-e58ls-new-chinh-hang-2_1709842926.webp",
+            "assets/img/Vợt cầu lông Kumpoo Power Control E58LS new/vot-cau-long-kumpoo-power-control-e58ls-new-chinh-hang-3_1710558930.webp"
         ],
         "specs": {
             "Trọng lượng": "82 + 2g (4U)",
@@ -200,13 +200,13 @@ const productsData = [
         "original_price": 2500000,
         "category": "Bộ Sản Phẩm (Set)",
         "images": [
-            "img/SET Vợt Cầu Lông Kumpoo B.Duck Cool/SET Vợt Cầu Lông Kumpoo B.Duck Cool.webp",
-            "img/SET Vợt Cầu Lông Kumpoo B.Duck Cool/Vợt Cầu Lông Kumpoo Power Balanced 11.webp",
-            "img/SET Vợt Cầu Lông Kumpoo B.Duck Cool/set-vot-cau-long-kumpoo-b-duck-cool-den-chinh-hang-1_1733522091.webp",
-            "img/SET Vợt Cầu Lông Kumpoo B.Duck Cool/set-vot-cau-long-kumpoo-b-duck-cool-den-chinh-hang-2_1733522096.webp",
-            "img/SET Vợt Cầu Lông Kumpoo B.Duck Cool/set-vot-cau-long-kumpoo-b-duck-cool-den-chinh-hang-3_1733522102.webp",
-            "img/SET Vợt Cầu Lông Kumpoo B.Duck Cool/set-vot-cau-long-kumpoo-b-duck-cool-den-chinh-hang-4_1733522107.webp",
-            "img/SET Vợt Cầu Lông Kumpoo B.Duck Cool/set-vot-cau-long-kumpoo-b-duck-cool-den-chinh-hang_1733522086.webp"
+            "assets/img/SET Vợt Cầu Lông Kumpoo B.Duck Cool/SET Vợt Cầu Lông Kumpoo B.Duck Cool.webp",
+            "assets/img/SET Vợt Cầu Lông Kumpoo B.Duck Cool/Vợt Cầu Lông Kumpoo Power Balanced 11.webp",
+            "assets/img/SET Vợt Cầu Lông Kumpoo B.Duck Cool/set-vot-cau-long-kumpoo-b-duck-cool-den-chinh-hang-1_1733522091.webp",
+            "assets/img/SET Vợt Cầu Lông Kumpoo B.Duck Cool/set-vot-cau-long-kumpoo-b-duck-cool-den-chinh-hang-2_1733522096.webp",
+            "assets/img/SET Vợt Cầu Lông Kumpoo B.Duck Cool/set-vot-cau-long-kumpoo-b-duck-cool-den-chinh-hang-3_1733522102.webp",
+            "assets/img/SET Vợt Cầu Lông Kumpoo B.Duck Cool/set-vot-cau-long-kumpoo-b-duck-cool-den-chinh-hang-4_1733522107.webp",
+            "assets/img/SET Vợt Cầu Lông Kumpoo B.Duck Cool/set-vot-cau-long-kumpoo-b-duck-cool-den-chinh-hang_1733522086.webp"
         ],
         "specs": {
             "Trọng lượng": "82 ± 2g (4U)",
@@ -226,14 +226,14 @@ const productsData = [
         "original_price": 2850000,
         "category": "Bộ Sản Phẩm (Set)",
         "images": [
-            "img/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng.webp",
-            "img/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng/SET-vot-cau-long-Kumpoo-Moutains-And-Rivers-chinh-hang-5 (1).webp",
-            "img/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng/SET-vot-cau-long-Kumpoo-Moutains-And-Rivers-chinh-hang-6.webp",
-            "img/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng/set-vot-cau-long-kumpoo-moutains-and-rivers-chinh-hang-1.webp",
-            "img/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng/set-vot-cau-long-kumpoo-moutains-and-rivers-chinh-hang-2.webp",
-            "img/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng/set-vot-cau-long-kumpoo-moutains-and-rivers-chinh-hang-3.webp",
-            "img/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng/set-vot-cau-long-kumpoo-moutains-and-rivers-chinh-hang-4.webp",
-            "img/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng/set-vot-cau-long-kumpoo-moutains-and-rivers-chinh-hang-5.webp"
+            "assets/img/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng.webp",
+            "assets/img/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng/SET-vot-cau-long-Kumpoo-Moutains-And-Rivers-chinh-hang-5 (1).webp",
+            "assets/img/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng/SET-vot-cau-long-Kumpoo-Moutains-And-Rivers-chinh-hang-6.webp",
+            "assets/img/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng/set-vot-cau-long-kumpoo-moutains-and-rivers-chinh-hang-1.webp",
+            "assets/img/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng/set-vot-cau-long-kumpoo-moutains-and-rivers-chinh-hang-2.webp",
+            "assets/img/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng/set-vot-cau-long-kumpoo-moutains-and-rivers-chinh-hang-3.webp",
+            "assets/img/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng/set-vot-cau-long-kumpoo-moutains-and-rivers-chinh-hang-4.webp",
+            "assets/img/SET Vợt cầu lông Kumpoo Moutains And Rivers Chính Hãng/set-vot-cau-long-kumpoo-moutains-and-rivers-chinh-hang-5.webp"
         ],
         "specs": {
             "Trọng lượng": "82 ± 2g (4U)",
@@ -253,9 +253,9 @@ const productsData = [
         "original_price": 2400000,
         "category": "Bộ Sản Phẩm (Set)",
         "images": [
-            "img/SET vợt cầu lông Kumpoo Shanhai/SET vợt cầu lông Kumpoo Shanhai.webp",
-            "img/SET vợt cầu lông Kumpoo Shanhai/set-vot-cau-long-kumpoo-shanhai-noi-dia-trung-1_1741026277.webp",
-            "img/SET vợt cầu lông Kumpoo Shanhai/set-vot-cau-long-kumpoo-shanhai-noi-dia-trung-2_1741026283.webp"
+            "assets/img/SET vợt cầu lông Kumpoo Shanhai/SET vợt cầu lông Kumpoo Shanhai.webp",
+            "assets/img/SET vợt cầu lông Kumpoo Shanhai/set-vot-cau-long-kumpoo-shanhai-noi-dia-trung-1_1741026277.webp",
+            "assets/img/SET vợt cầu lông Kumpoo Shanhai/set-vot-cau-long-kumpoo-shanhai-noi-dia-trung-2_1741026283.webp"
         ],
         "specs": {
             "Trọng lượng": "4U (82 ± 2g)",
@@ -275,8 +275,8 @@ const productsData = [
         "original_price": 895000,
         "category": "Vợt Cầu Lông",
         "images": [
-            "img/Vợt Cầu Lông Kumpoo Power Control K520 Pro Plus - Xanh chính hãng/vot-cau-long-kumpoo-power-control-k520-pro-plus-xanh-chinh-hang-1_1759430213.webp",
-            "img/Vợt Cầu Lông Kumpoo Power Control K520 Pro Plus - Xanh chính hãng/vot-cau-long-kumpoo-power-control-k520-pro-plus-xanh-chinh-hang_1759430208.webp"
+            "assets/img/Vợt Cầu Lông Kumpoo Power Control K520 Pro Plus - Xanh chính hãng/vot-cau-long-kumpoo-power-control-k520-pro-plus-xanh-chinh-hang-1_1759430213.webp",
+            "assets/img/Vợt Cầu Lông Kumpoo Power Control K520 Pro Plus - Xanh chính hãng/vot-cau-long-kumpoo-power-control-k520-pro-plus-xanh-chinh-hang_1759430208.webp"
         ],
         "specs": {
             "Trọng lượng": "82 ± 2g (4U)",
@@ -298,7 +298,7 @@ const productsData = [
         "original_price": 1200000,
         "category": "Giày Cầu Lông",
         "images": [
-            "img/Giày cầu lông Kumpoo KH-E55 trắng chính hãng/giay-cau-long-kumpoo-kh-e55-trang-chinh-hang-1.webp"
+            "assets/img/Giày cầu lông Kumpoo KH-E55 trắng chính hãng/giay-cau-long-kumpoo-kh-e55-trang-chinh-hang-1.webp"
         ],
         "specs": {
             "Màu sắc": "Trắng",
@@ -317,7 +317,7 @@ const productsData = [
         "original_price": 1200000,
         "category": "Giày Cầu Lông",
         "images": [
-            "img/Giày cầu lông Kumpoo KH-E55 đen chính hãng/giay-cau-long-kumpoo-kh-e55-den-chinh-hang-1.webp"
+            "assets/img/Giày cầu lông Kumpoo KH-E55 đen chính hãng/giay-cau-long-kumpoo-kh-e55-den-chinh-hang-1.webp"
         ],
         "specs": {
             "Màu sắc": "Đen",
@@ -336,7 +336,7 @@ const productsData = [
         "original_price": 1650000,
         "category": "Giày Cầu Lông",
         "images": [
-            "img/Giày cầu lông Kumpoo KH-G825/giay-cau-long-kumpoo-kh-g825-trang-chinh-hang_1728868380.webp"
+            "assets/img/Giày cầu lông Kumpoo KH-G825/giay-cau-long-kumpoo-kh-g825-trang-chinh-hang_1728868380.webp"
         ],
         "specs": {
             "Màu sắc": "Trắng",
@@ -355,7 +355,7 @@ const productsData = [
         "original_price": 1800000,
         "category": "Giày Cầu Lông",
         "images": [
-            "img/Giày cầu lông Kumpoo KH-G826S/giay-cau-long-kumpoo-kh-g826s-trang-chinh-hang_1720401434.webp"
+            "assets/img/Giày cầu lông Kumpoo KH-G826S/giay-cau-long-kumpoo-kh-g826s-trang-chinh-hang_1720401434.webp"
         ],
         "specs": {
             "Màu sắc": "Trắng",
@@ -376,8 +376,8 @@ const productsData = [
         "original_price": 550000,
         "category": "Túi Cầu Lông",
         "images": [
-            "img/Túi cầu lông Kumpoo K432/tui-cau-long-kumpoo-k432-trang-chinh-hang_1734549416.webp",
-            "img/Túi cầu lông Kumpoo K432/tui-cau-long-kumpoo-k432-trang-chinh-hang-1_1734549422.webp"
+            "assets/img/Túi cầu lông Kumpoo K432/tui-cau-long-kumpoo-k432-trang-chinh-hang_1734549416.webp",
+            "assets/img/Túi cầu lông Kumpoo K432/tui-cau-long-kumpoo-k432-trang-chinh-hang-1_1734549422.webp"
         ],
         "specs": {
             "Màu sắc": "Trắng",
@@ -396,7 +396,7 @@ const productsData = [
         "original_price": 650000,
         "category": "Túi Cầu Lông",
         "images": [
-            "img/Túi cầu lông Kumpoo KB-163 Trắng nâu chính hãng/tui-cau-long-kumpoo-kb-163-trang-nau-chinh-hang-1.webp"
+            "assets/img/Túi cầu lông Kumpoo KB-163 Trắng nâu chính hãng/tui-cau-long-kumpoo-kb-163-trang-nau-chinh-hang-1.webp"
         ],
         "specs": {
             "Màu sắc": "Trắng - Nâu",
@@ -415,7 +415,7 @@ const productsData = [
         "original_price": 720000,
         "category": "Túi Cầu Lông",
         "images": [
-            "img/Túi cầu lông Kumpoo KB-268 Trắng chính hãng/tui-cau-long-kumpoo-kb-268-trang-chinh-hang-1.webp"
+            "assets/img/Túi cầu lông Kumpoo KB-268 Trắng chính hãng/tui-cau-long-kumpoo-kb-268-trang-chinh-hang-1.webp"
         ],
         "specs": {
             "Màu sắc": "Trắng",
@@ -434,9 +434,9 @@ const productsData = [
         "original_price": 890000,
         "category": "Túi Cầu Lông",
         "images": [
-            "img/Túi cầu lông Kumpoo KB369/balo-cau-long-kumpoo-kb369-den-chinh-hang_1728074251.webp",
-            "img/Túi cầu lông Kumpoo KB369/balo-cau-long-kumpoo-kb369-den-chinh-hang-1_1728074256.webp",
-            "img/Túi cầu lông Kumpoo KB369/balo-cau-long-kumpoo-kb369-den-chinh-hang-2_1728074266.webp"
+            "assets/img/Túi cầu lông Kumpoo KB369/balo-cau-long-kumpoo-kb369-den-chinh-hang_1728074251.webp",
+            "assets/img/Túi cầu lông Kumpoo KB369/balo-cau-long-kumpoo-kb369-den-chinh-hang-1_1728074256.webp",
+            "assets/img/Túi cầu lông Kumpoo KB369/balo-cau-long-kumpoo-kb369-den-chinh-hang-2_1728074266.webp"
         ],
         "specs": {
             "Màu sắc": "Đen",
@@ -457,7 +457,7 @@ const productsData = [
         "original_price": 120000,
         "category": "Vớ Cầu Lông",
         "images": [
-            "img/Vớ Cầu Lông Kumpoo KSO 07 Đỏ Chính Hãng/vo-cau-long-kumpoo-kso-07-do-chinh-hang_1719449364.webp"
+            "assets/img/Vớ Cầu Lông Kumpoo KSO 07 Đỏ Chính Hãng/vo-cau-long-kumpoo-kso-07-do-chinh-hang_1719449364.webp"
         ],
         "specs": {
             "Màu sắc": "Đỏ",
@@ -476,7 +476,7 @@ const productsData = [
         "original_price": 120000,
         "category": "Vớ Cầu Lông",
         "images": [
-            "img/Vớ Cầu Lông Kumpoo KSO 408 Trắng Chính Hãng/vo-cau-long-kumpoo-kso-408-trang-chinh-hang_1720494657.webp"
+            "assets/img/Vớ Cầu Lông Kumpoo KSO 408 Trắng Chính Hãng/vo-cau-long-kumpoo-kso-408-trang-chinh-hang_1720494657.webp"
         ],
         "specs": {
             "Màu sắc": "Trắng",
@@ -497,11 +497,11 @@ const productsData = [
         "original_price": 90000,
         "category": "Dây Cước Cầu Lông",
         "images": [
-            "img/Dây cước căng vợt cầu lông Kumpoo JS65/day-cuoc-cang-vot-cau-long-kumpoo-js65_1763145359.webp",
-            "img/Dây cước căng vợt cầu lông Kumpoo JS65/day-cuoc-cang-vot-cau-long-kumpoo-js65-1_1763145365.webp",
-            "img/Dây cước căng vợt cầu lông Kumpoo JS65/day-cuoc-cang-vot-cau-long-kumpoo-js65-2_1763145370.webp",
-            "img/Dây cước căng vợt cầu lông Kumpoo JS65/day-cuoc-cang-vot-cau-long-kumpoo-js65-3_1763145384.webp",
-            "img/Dây cước căng vợt cầu lông Kumpoo JS65/day-cuoc-cang-vot-cau-long-kumpoo-js65-4_1763145378.webp"
+            "assets/img/Dây cước căng vợt cầu lông Kumpoo JS65/day-cuoc-cang-vot-cau-long-kumpoo-js65_1763145359.webp",
+            "assets/img/Dây cước căng vợt cầu lông Kumpoo JS65/day-cuoc-cang-vot-cau-long-kumpoo-js65-1_1763145365.webp",
+            "assets/img/Dây cước căng vợt cầu lông Kumpoo JS65/day-cuoc-cang-vot-cau-long-kumpoo-js65-2_1763145370.webp",
+            "assets/img/Dây cước căng vợt cầu lông Kumpoo JS65/day-cuoc-cang-vot-cau-long-kumpoo-js65-3_1763145384.webp",
+            "assets/img/Dây cước căng vợt cầu lông Kumpoo JS65/day-cuoc-cang-vot-cau-long-kumpoo-js65-4_1763145378.webp"
         ],
         "specs": {
             "Độ dày": "0.65 mm",
@@ -521,11 +521,11 @@ const productsData = [
         "original_price": 95000,
         "category": "Dây Cước Cầu Lông",
         "images": [
-            "img/Dây cước căng vợt cầu lông Kumpoo JS67/day-cuoc-cang-vot-cau-long-kumpoo-js67_1763145711.webp",
-            "img/Dây cước căng vợt cầu lông Kumpoo JS67/day-cuoc-cang-vot-cau-long-kumpoo-js67-1_1763145726.webp",
-            "img/Dây cước căng vợt cầu lông Kumpoo JS67/day-cuoc-cang-vot-cau-long-kumpoo-js67-2_1763145733.webp",
-            "img/Dây cước căng vợt cầu lông Kumpoo JS67/day-cuoc-cang-vot-cau-long-kumpoo-js67-3_1763145741.webp",
-            "img/Dây cước căng vợt cầu lông Kumpoo JS67/day-cuoc-cang-vot-cau-long-kumpoo-js67-4_1763145759.webp"
+            "assets/img/Dây cước căng vợt cầu lông Kumpoo JS67/day-cuoc-cang-vot-cau-long-kumpoo-js67_1763145711.webp",
+            "assets/img/Dây cước căng vợt cầu lông Kumpoo JS67/day-cuoc-cang-vot-cau-long-kumpoo-js67-1_1763145726.webp",
+            "assets/img/Dây cước căng vợt cầu lông Kumpoo JS67/day-cuoc-cang-vot-cau-long-kumpoo-js67-2_1763145733.webp",
+            "assets/img/Dây cước căng vợt cầu lông Kumpoo JS67/day-cuoc-cang-vot-cau-long-kumpoo-js67-3_1763145741.webp",
+            "assets/img/Dây cước căng vợt cầu lông Kumpoo JS67/day-cuoc-cang-vot-cau-long-kumpoo-js67-4_1763145759.webp"
         ],
         "specs": {
             "Độ dày": "0.67 mm",
@@ -547,7 +547,7 @@ const productsData = [
         "original_price": 50000,
         "category": "Quấn Cán Cầu Lông",
         "images": [
-            "img/Quấn cán vợt cầu lông Kumpoo K003/quan-can-vot-cau-long-kumpoo-k003_1721175542.webp"
+            "assets/img/Quấn cán vợt cầu lông Kumpoo K003/quan-can-vot-cau-long-kumpoo-k003_1721175542.webp"
         ],
         "specs": {
             "Chiều dài": "1100 mm",

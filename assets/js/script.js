@@ -365,6 +365,47 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // ── Search implementation ──
+  const searchInput = document.getElementById("searchInput");
+  const searchBtn = document.getElementById("searchBtn");
+
+  function handleSearch() {
+    const query = searchInput.value.trim().toLowerCase();
+    if (!query) {
+      window.setFilter(); // Restore current category filter
+      return;
+    }
+
+    const isEn = currentLang === "en";
+    const filtered = productsData.filter((product) => {
+      const nameVi = product.name.toLowerCase();
+      const nameEn = (productTranslations.names[product.id]?.en || "").toLowerCase();
+      const catVi = product.category.toLowerCase();
+      const catEn = (productTranslations.categories[product.category]?.en || "").toLowerCase();
+      
+      return nameVi.includes(query) || nameEn.includes(query) || 
+             catVi.includes(query) || catEn.includes(query);
+    });
+
+    renderProducts(filtered);
+    
+    // UI feedback if empty
+    if (filtered.length === 0) {
+      const msg = isEn ? "No products found matching your search." : "Không tìm thấy sản phẩm nào khớp với tìm kiếm của bạn.";
+      productGrid.innerHTML = `<div class="cart-empty" style="grid-column: 1/-1; padding: 100px 0;">
+        <span style="font-size: 3rem;">🔍</span>
+        <p style="font-size: 1.2rem; margin-top: 15px;">${msg}</p>
+      </div>`;
+    }
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener("input", handleSearch);
+  }
+  if (searchBtn) {
+      searchBtn.addEventListener("click", handleSearch);
+  }
+
   // Expose filter re-render for language switcher
   window.setFilter = () => {
     const filtered =
@@ -395,6 +436,8 @@ document.addEventListener("DOMContentLoaded", () => {
           : product.category;
         return `
             <div class="product-card" id="product-${product.id}">
+                <button class="product-wishlist-icon wishlist-icon-${product.id} ${wishlistItems.includes(product.id) ? 'active' : ''}" 
+                        onclick="toggleWishlist(event, '${product.id}')" title="Yêu thích">❤</button>
                 <img src="${product.images[0]}" alt="${name}" class="product-image" onclick="openProductModal('${product.id}')">
                 <div class="product-category">${category}</div>
                 <a class="product-name" href="javascript:void(0)" onclick="openProductModal('${product.id}')">${name}</a>
@@ -682,4 +725,84 @@ document.addEventListener("DOMContentLoaded", () => {
   // Kick off
   goTo(0);
   startAuto();
+})();
+
+// ====================================================
+//  REVIEW SLIDER (JS)
+// ====================================================
+(function initReviewSlider() {
+    const slider = document.getElementById("reviewSlider");
+    const container = document.getElementById("reviewSliderContainer");
+    const prevBtn = document.getElementById("reviewPrev");
+    const nextBtn = document.getElementById("reviewNext");
+    const dotsContainer = document.getElementById("reviewDots");
+    
+    if (!slider || !container) return;
+
+    const cards = Array.from(slider.children);
+    let currentIndex = 0;
+    let autoTimer = null;
+    const AUTO_DELAY = 6000;
+
+    // Generate dots
+    dotsContainer.innerHTML = cards.map((_, i) => `<div class="review-dot" data-index="${i}"></div>`).join("");
+    const dots = Array.from(dotsContainer.children);
+
+    function getVisibleCards() {
+        if (window.innerWidth <= 600) return 1;
+        if (window.innerWidth <= 992) return 2;
+        return 3;
+    }
+
+    function updateSlider() {
+        const visible = getVisibleCards();
+        const maxIndex = Math.max(0, cards.length - visible);
+        
+        if (currentIndex > maxIndex) currentIndex = maxIndex;
+        
+        const cardWidth = cards[0].offsetWidth + 30; // factor in gap
+        slider.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+        
+        // Update dots
+        dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === currentIndex);
+            // Hide dots that would result in empty space at end
+            dot.style.display = i <= maxIndex ? "block" : "none";
+        });
+    }
+
+    function move(dir) {
+        const visible = getVisibleCards();
+        const maxIndex = Math.max(0, cards.length - visible);
+        
+        currentIndex += dir;
+        if (currentIndex < 0) currentIndex = maxIndex;
+        if (currentIndex > maxIndex) currentIndex = 0;
+        
+        updateSlider();
+        startAuto();
+    }
+
+    // Controls
+    nextBtn?.addEventListener("click", () => move(1));
+    prevBtn?.addEventListener("click", () => move(-1));
+    
+    dots.forEach(dot => {
+        dot.addEventListener("click", () => {
+            currentIndex = parseInt(dot.dataset.index);
+            updateSlider();
+            startAuto();
+        });
+    });
+
+    function startAuto() {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(() => move(1), AUTO_DELAY);
+    }
+
+    window.addEventListener("resize", updateSlider);
+    
+    // Init
+    updateSlider();
+    startAuto();
 })();
