@@ -500,6 +500,44 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
+    // Extra Sizes / Weights
+    let extraOptionsHtml = "";
+    window.selectedItemSpec = ""; 
+    
+    if (product.category === "Giày Cầu Lông") {
+      const sizes = ["37", "38", "39", "40", "41", "42", "43", "44"];
+      const sizeLabel = isEn ? "Choose Size:" : "Chọn Size:";
+      window.selectedItemSpec = "40"; // Default size
+      
+      extraOptionsHtml = `
+          <div class="variant-selector" style="margin-top: 15px;">
+              <span class="variant-title">${sizeLabel}</span>
+              <div class="color-chips" id="extraOptionsList">
+                  ${sizes.map((s) => `
+                        <div class="color-chip ${s === window.selectedItemSpec ? 'active' : ''}" 
+                             onclick="selectExtraOption(this, '${s}')">${s}</div>
+                  `).join("")}
+              </div>
+          </div>
+      `;
+    } else if (product.category === "Vợt Cầu Lông" || product.category === "Bộ Sản Phẩm (Set)") {
+      const weights = ["3U", "4U", "5U"];
+      const weightLabel = isEn ? "Weight:" : "Trọng lượng:";
+      window.selectedItemSpec = "4U"; // Default weight
+      
+      extraOptionsHtml = `
+          <div class="variant-selector" style="margin-top: 15px;">
+              <span class="variant-title">${weightLabel}</span>
+              <div class="color-chips" id="extraOptionsList">
+                  ${weights.map((w) => `
+                        <div class="color-chip ${w === window.selectedItemSpec ? 'active' : ''}" 
+                             onclick="selectExtraOption(this, '${w}')">${w}</div>
+                  `).join("")}
+              </div>
+          </div>
+      `;
+    }
+
     // Specs
     const specsHtml = Object.entries(product.specs)
       .map(([label, value]) => {
@@ -551,6 +589,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
                 
                 ${colorOptions}
+                ${extraOptionsHtml}
 
                 <div class="spec-list">
                     ${specsHtml}
@@ -569,6 +608,13 @@ document.addEventListener("DOMContentLoaded", () => {
     modal._currentProduct = product;
     modal._currentVariantIndex = selectedVariantIndex;
   }
+
+  // Handle select extra options
+  window.selectExtraOption = function (element, value) {
+      document.querySelectorAll('#extraOptionsList .color-chip').forEach(el => el.classList.remove('active'));
+      if (element) element.classList.add('active');
+      window.selectedItemSpec = value;
+  };
 
   // Expose displayProductDetails so language toggle can refresh open modal
   window._refreshModal = () => {

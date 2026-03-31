@@ -8,7 +8,7 @@ const authI18n = {
     passShort: { vi: 'Mật khẩu tối thiểu 6 ký tự.', en: 'Password must be at least 6 characters.' },
     wrongCred: { vi: 'Tên đăng nhập hoặc mật khẩu không đúng.', en: 'Incorrect username or password.' },
     regSuccess: { vi: 'Đăng ký thành công! Đang đăng nhập...', en: 'Account created! Signing you in...' },
-    checkoutMsg: { vi: '🎉 Cảm ơn bạn đã đặt hàng!\nChúng tôi sẽ liên hệ xác nhận sớm nhất.', en: '🎉 Thank you for your order!\nWe will contact you to confirm shortly.' },
+    checkoutMsg: { vi: '🎉 Thanh toán thành công!\nShop sẽ liên hệ giao hàng trong 24h.', en: '🎉 Payment successful!\nThe shop will contact you for delivery within 24 hours.' },
     hi: { vi: 'Xin chào,', en: 'Hello,' },
 };
 
@@ -79,13 +79,13 @@ window.switchAuthTab = function (tab) {
 
 function applyAuthLang() {
     const lang = (typeof currentLang !== 'undefined') ? currentLang : 'vi';
-    // Update placeholder for inputs in auth modal
-    document.querySelectorAll('#authModal input').forEach(inp => {
+    // Update placeholder for inputs in auth modal and checkout modal
+    document.querySelectorAll('#authModal input, #checkoutModal input').forEach(inp => {
         const ph = inp.dataset[lang + 'Placeholder'];
         if (ph) inp.placeholder = ph;
     });
     // Update data-vi/en text nodes
-    document.querySelectorAll('#authModal [data-vi][data-en]').forEach(el => {
+    document.querySelectorAll('#authModal [data-vi][data-en], #checkoutModal [data-vi][data-en]').forEach(el => {
         el.textContent = el.dataset[lang];
     });
 }
@@ -169,25 +169,41 @@ window.addToCart = function (productId) {
     const product = productsData.find(p => p.id === productId);
     if (!product) return;
 
+    // Lấy thông số Size/Trọng lượng nếu đang ở trên Modal
+    const modalEl = document.getElementById('productModal');
+    let spec = "";
+    if (modalEl && modalEl.style.display === "block" && window.selectedItemSpec) {
+        spec = window.selectedItemSpec; 
+    } else {
+        // Fallback măc định khi add nhanh từ Wishlist
+        if (product.category === "Giày Cầu Lông") spec = "40";
+        if (product.category === "Vợt Cầu Lông" || product.category === "Bộ Sản Phẩm (Set)") spec = "4U";
+    }
+
     const user = getSession();
     if (!user) {
+        product._tempSpec = spec;
         _pendingProduct = product;
         openAuthModal('login');
         return;
     }
-    addToCartItem(product);
+    addToCartItem(product, spec);
 };
 
-function addToCartItem(product) {
+function addToCartItem(product, spec) {
     const user = getSession();
     if (!user || !product) return;
 
+    if (spec === undefined && product._tempSpec) spec = product._tempSpec;
+
     const cart = getCart(user);
-    const existing = cart.find(i => i.id === product.id);
+    const cartItemId = spec ? `${product.id}-${spec}` : product.id;
+    const existing = cart.find(i => i.id === cartItemId);
+    
     if (existing) {
         existing.qty++;
     } else {
-        cart.push({ id: product.id, name: product.name, price: product.price, image: product.images[0], qty: 1 });
+        cart.push({ id: cartItemId, originalId: product.id, name: product.name, price: product.price, image: product.images[0], qty: 1, spec: spec });
     }
     saveCart(user, cart);
     updateCartBadge();
@@ -287,11 +303,18 @@ function renderCartSidebar() {
     let total = 0;
     itemsEl.innerHTML = cart.map(item => {
         total += item.price * item.qty;
+        
+        // Lookup dịch tên sản phẩm với id nguyên bản
+        const originalId = item.originalId || item.id;
+        const baseName = lang === 'en' ? (productTranslations.names[originalId]?.en || item.name) : item.name;
+        // Gắn thêm thuộc tính spec (size / trọng lượng) vào đuôi
+        const displayName = item.spec ? `${baseName} (${item.spec})` : baseName;
+
         return `
         <div class="cart-item">
-            <img src="${item.image}" alt="${item.name}">
+            <img src="${item.image}" alt="${displayName}">
             <div class="cart-item-info">
-                <div class="cart-item-name" title="${item.name}">${item.name}</div>
+                <div class="cart-item-name" title="${displayName}">${displayName}</div>
                 <div class="cart-item-price">${formatPriceCart(item.price)}</div>
                 <div class="cart-item-qty">
                     <button class="qty-btn" onclick="changeQty('${item.id}', -1)">−</button>
@@ -312,7 +335,90 @@ window.checkoutAlert = function () {
     if (!user) { openAuthModal('login'); return; }
     const cart = getCart(user);
     if (cart.length === 0) return;
-    alert(t('checkoutMsg'));
+    
+    // Lấy tổng tiền
+    let total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+    const totalEl = document.getElementById('checkoutTotalDisplay');
+    if(totalEl) totalEl.textContent = formatPriceCart(total);
+    
+    const statusEl = document.getElementById('checkoutStatus');
+    if(statusEl) statusEl.textContent = '';
+    
+    // Mở Modal Checkout
+    const modal = document.getElementById('checkoutModal');
+    if(modal) {
+        modal.classList.add('open');
+        // Vẫn giữ hidden nếu đang bật cart sidebar
+    }
+    
+    const lang = (typeof currentLang !== 'undefined') ? currentLang : 'vi';
+    document.querySelectorAll('#checkoutModal [data-vi][data-en]').forEach(el => {
+        el.textContent = el.dataset[lang];
+    });
+};
+
+window.closeCheckoutModal = function (e) {
+    if (e && e.target !== document.getElementById('checkoutModal')) return;
+    const modal = document.getElementById('checkoutModal');
+    if(modal) modal.classList.remove('open');
+};
+
+window.checkPaymentStatus = function () {
+    const statusEl = document.getElementById('checkoutStatus');
+    const btn = document.getElementById('confirmPaymentBtn');
+    const phoneInput = document.getElementById('checkoutPhone').value.trim();
+    const addressInput = document.getElementById('checkoutAddress').value.trim();
+    const lang = (typeof currentLang !== 'undefined') ? currentLang : 'vi';
+    
+    // Validate inputs
+    if (!phoneInput || !addressInput) {
+        if(statusEl) {
+            statusEl.style.color = '#ff6b6b';
+            statusEl.textContent = lang === 'en' ? 'Please enter your phone number and delivery address.' : 'Vui lòng nhập số điện thoại và địa chỉ nhận hàng.';
+        }
+        return;
+    }
+    
+    if(statusEl) {
+        statusEl.style.color = '#fff';
+        statusEl.textContent = lang === 'en' ? 'Checking payment transaction, please wait...' : 'Đang kiểm tra giao dịch, vui lòng đợi...';
+    }
+    
+    if(btn) {
+        btn.disabled = true;
+        btn.style.opacity = '0.5';
+    }
+
+    // Giả lập độ trễ kiểm tra hệ thống ngân hàng (2 giây)
+    setTimeout(() => {
+        if(statusEl) {
+            statusEl.style.color = '#00ff88';
+            statusEl.textContent = lang === 'en' ? 'Payment successful! Processing...' : 'Thanh toán thành công! Đang xử lý...';
+        }
+        
+        setTimeout(() => {
+            // Xóa sản phẩm khỏi giỏ hàng
+            const user = getSession();
+            if (user) {
+                saveCart(user, []);
+                updateCartBadge();
+                renderCartSidebar();
+            }
+            
+            // Tắt các modal
+            closeCheckoutModal(null);
+            closeCart();
+            
+            // Thông báo hiển thị "Shop sẽ liên hệ trong 24h"
+            alert(t('checkoutMsg'));
+            
+            // Chờ người dùng bấm OK thì mới tiếp tục
+            if(btn) {
+                btn.disabled = false;
+                btn.style.opacity = '1';
+            }
+        }, 1500);
+    }, 2000);
 };
 
 // ── Hook into language switcher ───────────────────────
