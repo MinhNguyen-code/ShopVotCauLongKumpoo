@@ -201,6 +201,63 @@ function getBotResponse(text) {
 }
 ```
 
+### 2.9. Thanh Toán bằng Mã QR (QR Checkout) - `cart-auth.js`
+- **Hoạt động:** Khi khách hàng nhấn "Thanh toán", một modal chứa QR Code của chủ shop kèm form nhập Số điện thoại và Địa chỉ nhận hàng sẽ hiện lên. 
+- **Logic / Code minh họa:** Hàm `checkPaymentStatus()` sẽ validate dữ liệu đầu vào. Nếu thiếu số điện thoại hoặc địa chỉ, sẽ báo lỗi. Nếu nhập đủ, hệ thống giả lập kết nối ngân hàng với độ trễ 2 giây. Viết logic làm sạch Giỏ hàng và hiện alert thông báo xử lý đơn hàng.
+
+```javascript
+window.checkPaymentStatus = function () {
+    const phoneInput = document.getElementById('checkoutPhone').value.trim();
+    const addressInput = document.getElementById('checkoutAddress').value.trim();
+    
+    // Validate inputs
+    if (!phoneInput || !addressInput) {
+        document.getElementById('checkoutStatus').textContent = 'Vui lòng nhập số điện thoại và địa chỉ nhận hàng.';
+        return;
+    }
+    
+    // Giả lập độ trễ kiểm tra hệ thống ngân hàng (2 giây)
+    setTimeout(() => {
+        // Xóa sản phẩm khỏi giỏ hàng
+        const user = getSession();
+        if (user) saveCart(user, []);
+        
+        // Thông báo hiển thị "Shop sẽ liên hệ"
+        alert(t('checkoutMsg'));
+    }, 2000);
+};
+```
+
+### 2.10. Chọn Biến Thể (Size Giày / Trọng Lượng Vợt)
+- **Hoạt động:** Hệ thống tự động phân loại để render UI chọn Size giày (37-44) đối với danh mục "Giày Cầu Lông" và Trọng lượng (3U, 4U, 5U) đối với danh mục "Vợt".
+- **Logic / Code minh họa:** Trong `cart-auth.js`, khi gửi vào giỏ hàng, thông số `spec` sẽ được nối vào biến `id` sản phẩm để tách biệt thành các dòng hàng hóa độc lập. Khi hiển thị trong Giỏ hàng, tên sản phẩm tự động chèn thêm thông số này như `(4U)`.
+
+```javascript
+function addToCartItem(product, spec) {
+    const user = getSession();
+    const cart = getCart(user);
+    
+    // Tạo ID mới chống trùng lặp, chia tách dòng các biến thể khác nhau
+    const cartItemId = spec ? `${product.id}-${spec}` : product.id;
+    const existing = cart.find(i => i.id === cartItemId);
+    
+    if (existing) {
+        existing.qty++; // Tăng con số lượng nếu người mua thêm tiếp đồ spec y chang
+    } else {
+        cart.push({ 
+            id: cartItemId, 
+            originalId: product.id, // ID gốc để móc nối hàm dịch đa ngôn ngữ
+            name: product.name, 
+            price: product.price, 
+            image: product.images[0], 
+            qty: 1, 
+            spec: spec 
+        });
+    }
+    saveCart(user, cart); // Encode và lưu bộ mảng Array
+}
+```
+
 ---
 
 ## 3. Tổng Kết Kiến Trúc CSS & HTML

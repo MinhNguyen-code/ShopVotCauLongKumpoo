@@ -48,6 +48,8 @@ A powerful frontend search engine that filters through the entire product catalo
 - **Promo Banner:** High-conversion animated hero section with progress bar.
 
 ### 🛒 Advanced Shopping Features
+- **Checkout & QR Payment:** Fully functional mock payment processing involving form validation (phone/address), delayed banking verification simulator, and cart liquidation state management upon success.
+- **Product Variants Logic:** Dynamic UI adapts to category types across the product range. Allows selection of Racket Weight (3U/4U/5U) or Shoe Sizes (37-44). Spec parsing is mapped elegantly into the cart engine generating isolated cart entries.
 - **Wishlist System:** Save your favorite items locally (LocalStorage). Persistent badge counter in the header.
 - **Cart Management:** Full cart logic with quantity controls and local storage persistence.
 - **Multilingual Support:** One-click seamless toggle between English & Vietnamese.
