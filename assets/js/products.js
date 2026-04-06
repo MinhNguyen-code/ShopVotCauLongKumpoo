@@ -1,3 +1,20 @@
+/*
+========================================================================================
+📋 CÂU HỎI TƯ DUY & BẢO VỆ ĐỒ ÁN (DÀNH CHO products.js)
+========================================================================================
+Q1: Tại sao lại lưu `productsData` dạng 1 biến Mảng tĩnh (hardcode JSON trong Variable Array) mà không gọi qua API thực lên MySQL Database?
+-> Đáp án: Do website này là Bản Static Front-End xây dựng cho bài tập hoàn thiện Logic UI.
+   - Việc thiết lập dữ liệu theo cấu trúc chuẩn JSON (có Object lồng nhau như Mảng `variants`, Object `specs`) giả lập y hệt data trả về từ `Fetch() / Axios` của các Restful API (như C# .NET, NodeJS trả ra JSON DB).
+   - Thiết kế thế này hoàn toàn phù hợp để tương lai chuyển hóa, bóc tách thành CSDL thật cực kì dễ (chỉ việc import JSON này vào MongoDB hoặc MySQL là xong). 
+
+Q2: Tại sao các `id` lại được viết dưới dạng "kumpoo-power-balanced-11" chứ không phải ID số như 1,2,3?
+-> Đáp án: Đây gọi là kĩ thuật chuẩn Slug URL & SEO-Friendly ID. Dạng định dạng này mang cấu trúc mã hóa độc nhất (UUID string) vừa chống trùng lặp vừa làm móc nối chính xác.  
+Đồng thời, file `script.js` dịch đa ngôn ngữ cần dựa vào chính key `id` string (ví dụ: `kumpoo-yangzhou`) này để dò bảng từ điển dịch thuật tên sản phẩm thay vì dò ID dạng số tối nghĩa.
+
+Q3: Việc load một file `products.js` khổng lồ vào thẻ `<script src>` có gây nặng Web không?
+-> Đáp án: Code text (Javascript text) thực tế cực nhẹ, dung lượng tính bằng Kilobyte (KB). 1.000 dòng code JSON này có dung lượng chỉ khoảng vài chục KB, trình duyệt tải trọn file này mất <0.02s mà không làm giật Lag UI. Trong thực tế, các sàn thương mại dùng API chia trang (Pagination/Lazyload), nhưng với tập dữ liệu cửa hàng Kumpoo vừa phải này, dùng Local Variable trực tiếp là hoàn toàn nhanh nhẹn.
+========================================================================================
+*/
 const productsData = [
     {
         "id": "kumpoo-power-balanced-11",

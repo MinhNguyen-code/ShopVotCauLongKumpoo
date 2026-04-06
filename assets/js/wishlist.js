@@ -1,3 +1,18 @@
+/*
+========================================================================================
+📋 CÂU HỎI TƯ DUY & BẢO VỆ ĐỒ ÁN (DÀNH CHO wishlist.js)
+========================================================================================
+Q1: Wishlist (Sản phẩm yêu thích) dùng biến `Array` nhưng tại sao không bị trùng lặp sản phẩm nếu bấm thả tim 2 lần?
+-> Đáp án: Hàm xử lý `toggleWishlist()` đã dùng logic "Toggle" (công tắc). 
+   - Nó dùng `array.indexOf(productId)` tìm xem món đó đã có tim hay chưa. 
+   - Nếu kết quả `> -1` (đã nằm trong mảng) -> Thực thi hàm `splice()` cắt bỏ phần tử đó (Bỏ Yêu thích).
+   - Nếu kết quả `= -1` (chưa có) -> Thực thi `push()` nhét vào cuối Array (Thích).
+
+Q2: Tính năng Wishlist có nhược điểm gì do không dùng Backend phụ thuộc UserID không? Làm sao để khắc phục?
+-> Đáp án: Giao diện này dùng chung `localStorage` cho danh sách Yêu Thích mà không cấp phát theo `username` (như cách Giỏ hàng `cart-auth.js` đã làm). Điều này có nghĩa là, nếu tài khoản A logout và tài khoản B login chung trên 1 trình duyệt, họ vẫn sẽ thấy danh sách yêu thích của nhau.  
+   Để khắc phục, tương lai có thể đổi biến `kumpooWishlist` thành `kumpooWishlist_${user}` như Giỏ hàng.
+========================================================================================
+*/
 // wishlist.js
 
 // Initialize wishlist from Local Storage

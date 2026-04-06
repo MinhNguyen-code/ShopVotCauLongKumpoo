@@ -1,3 +1,21 @@
+/*
+========================================================================================
+📋 CÂU HỎI TƯ DUY & BẢO VỆ ĐỒ ÁN (DÀNH CHO chatbot.js)
+========================================================================================
+Q1: Chatbot này hoạt động như thế nào, nó có sử dụng Trí Tuệ Nhân Tạo (AI/Machine Learning) không?
+-> Đáp án: Không, nó là Rules-based Chatbot (Dựa trên luật "if-else" và gán từ khóa), không phải NLP/AI thực. Thuật toán của nó:
+   - Khi user gõ câu lệnh => Chuyển tất cả chữ viết hoa về chữ viết thường (tolowerCase).
+   - Nó chạy vòng lặp lồng duyệt qua 1 cơ sở dữ liệu file cứng định nghĩa sẵn chứa các chuỗi "keyword" (ví dụ: 'vợt', 'k520', 'trả lại', 'bảo hành').
+   - Sử dụng lệnh String `includes()` để cạch check có chứa từ khóa đó trong nội dung user gõ không. Nếu KHỚP lệnh -> In ra Response ứng với key đó. Nếu KHÔNG KHỚP -> In câu trả lời Mặc định (default message).
+
+Q2: Mục đích đoạn code render giao diện với dòng chữ "Đang trả lời..." rồi trễ 1 giây bằng lệnh `setTimeout`?
+-> Đáp án: Vì bản chất bot lấy kết quả JSON có sẵn trong ram HTML nên bot quét và phản hồi mất 0.001 giây (quá ảo/nhanh so với thực tế).
+Dùng timeout để "Mô phỏng (Mock)" độ trễ suy nghĩ typing trả lời giống thật với một con người (Human UX Simulator), gia tăng thiện cảm và UX thực tế cho app web tĩnh.
+
+Q3: Việc tạo Chatbot có song ngữ xử lý kiểu gì?
+-> Đáp án: Khởi tạo biến JSON tên `botResponses` chứa 2 Array riêng biệt: mảng `vi` (Tiếng việt) và mảng `en` (Tiếng Anh). Khi click chat -> Bot sẽ móc trích xuất localStorage.getItem('kumpooLang') để biết ngôn ngữ hiện tại của app từ đó nó lấy Object vi hay Object en để làm data response. Cực kì linh hoạt mà không cần đổi trang HTML.
+========================================================================================
+*/
 // assets/js/chatbot.js
 const botResponses = {
     vi: {

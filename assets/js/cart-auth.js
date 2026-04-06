@@ -1,3 +1,20 @@
+/*
+========================================================================================
+📋 CÂU HỎI TƯ DUY & BẢO VỆ ĐỒ ÁN (DÀNH CHO cart-auth.js)
+========================================================================================
+Q1: Cấu trúc giỏ hàng được tổ chức như thế nào trong bộ nhớ? Xử lý việc cộng dồn số lượng ra sao?
+-> Đáp án: Giỏ hàng là một cấu trúc Mảng (Array) chứa nhiều Đối tượng (Object). Khi user thêm 1 sản phẩm:
+   - Hệ thống dùng hàm `Array.find()` check xem ID này kèm biến thể (Size/ Trọng lượng) đã nằm trong giỏ chưa.
+   - Nếu có rồi (`existing` != null) -> Chỉ tăng giá trị `qty` (số lượng).
+   - Nếu chưa có -> Dùng `Array.push()` nhồi toàn bộ thẻ Object đó làm một dòng hàng hóa mới vào giỏ.
+
+Q2: Làm sao để cô lập giỏ hàng của từng User độc lập thay vì nằm chung một cục trên Website?
+-> Đáp án: Giỏ hàng được lưu động (dynamic) theo key có định dạng: `kumpoo_cart_{username}` trên `localStorage`. Hàm `getSession()` sẽ lấy ra ID (tên) của User hiện tại để móc đúng với chìa khóa giỏ hàng thuộc về tài khoản đó. Nhờ vậy, tài khoản A không bao giờ thấy hàng hóa của tài khoản B.
+
+Q3: Tính năng thanh toán và nút Xác nhận chuyển khoản sử dụng `setTimeout` với mục đích gì?
+-> Đáp án: Đây là kỹ thuật "Mô phỏng bất đồng bộ" (Async UI/UX). Do web tĩnh không có Backend thực, thao tác trả kết quả quá nhanh sẽ tạo cảm giác 'Fake/Mã nguồn ảo'. Lệnh `setTimeout` bắt giao diện chờ 2 giây mô phỏng thao tác gọi API Sang Cổng Ngân hàng VNPay/Momo đang diễn ra, sau đó Giỏ hàng mới bị làm sạch (Clear array) và báo chuông hoàn thành. Trải nghiệm người dùng được gia tăng 100%.
+========================================================================================
+*/
 const authI18n = {
     emptyCart: { vi: 'Giỏ hàng trống', en: 'Your cart is empty' },
     emptyCartSub: { vi: 'Hãy thêm sản phẩm yêu thích!', en: 'Add your favourite products!' },
@@ -249,6 +266,36 @@ window.changeQty = function (productId, delta) {
     renderCartSidebar();
 };
 
+window.updateCartItemSpec = function (cartItemId, newSpec) {
+    const user = getSession();
+    if (!user) return;
+    const cart = getCart(user);
+    const itemIndex = cart.findIndex(i => i.id === cartItemId);
+    if (itemIndex === -1) return;
+    
+    const item = cart[itemIndex];
+    if (item.spec === newSpec) return; // Không thay đổi
+    
+    // Check xem giỏ hàng đã có cái spec mới này chưa
+    const originalId = item.originalId || item.id.split('-')[0];
+    const newCartItemId = `${originalId}-${newSpec}`;
+    const existingIndex = cart.findIndex(i => i.id === newCartItemId && i !== item);
+    
+    if (existingIndex !== -1) {
+        // Cộng dồn vào thằng đã có, xóa item cũ đi
+        cart[existingIndex].qty += item.qty;
+        cart.splice(itemIndex, 1);
+    } else {
+        // Đổi thẳng thuộc tính của item này
+        item.spec = newSpec;
+        item.id = newCartItemId;
+    }
+    
+    saveCart(user, cart);
+    updateCartBadge();
+    renderCartSidebar();
+};
+
 window.removeCartItem = function (productId) {
     const user = getSession();
     if (!user) return;
@@ -307,15 +354,31 @@ function renderCartSidebar() {
         // Lookup dịch tên sản phẩm với id nguyên bản
         const originalId = item.originalId || item.id;
         const baseName = lang === 'en' ? (productTranslations.names[originalId]?.en || item.name) : item.name;
-        // Gắn thêm thuộc tính spec (size / trọng lượng) vào đuôi
-        const displayName = item.spec ? `${baseName} (${item.spec})` : baseName;
+        
+        // Render thẻ <select> cho người dùng đổi size/trọng lượng ngay trong giỏ hàng
+        const p = productsData.find(prod => prod.id === originalId);
+        let selectHtml = "";
+        if (p) {
+            if (p.category === "Giày Cầu Lông") {
+                const sizes = ["37", "38", "39", "40", "41", "42", "43", "44"];
+                selectHtml = `<select class="cart-spec-select" onchange="updateCartItemSpec('${item.id}', this.value)" style="margin-top: 4px; padding: 2px 4px; border-radius: 4px; border: 1px solid #ccc; font-size: 0.8rem; outline: none; background: transparent; cursor: pointer;">
+                    ${sizes.map(s => `<option value="${s}" ${item.spec === s ? 'selected' : ''}>Size ${s}</option>`).join('')}
+                </select>`;
+            } else if (p.category === "Vợt Cầu Lông" || p.category === "Bộ Sản Phẩm (Set)") {
+                const weights = ["3U", "4U", "5U"];
+                selectHtml = `<select class="cart-spec-select" onchange="updateCartItemSpec('${item.id}', this.value)" style="margin-top: 4px; padding: 2px 4px; border-radius: 4px; border: 1px solid #ccc; font-size: 0.8rem; outline: none; background: transparent; cursor: pointer;">
+                    ${weights.map(w => `<option value="${w}" ${item.spec === w ? 'selected' : ''}>${w}</option>`).join('')}
+                </select>`;
+            }
+        }
 
         return `
         <div class="cart-item">
-            <img src="${item.image}" alt="${displayName}">
+            <img src="${item.image}" alt="${baseName}">
             <div class="cart-item-info">
-                <div class="cart-item-name" title="${displayName}">${displayName}</div>
-                <div class="cart-item-price">${formatPriceCart(item.price)}</div>
+                <div class="cart-item-name" title="${baseName}">${baseName}</div>
+                ${selectHtml}
+                <div class="cart-item-price" style="margin-top: 5px;">${formatPriceCart(item.price)}</div>
                 <div class="cart-item-qty">
                     <button class="qty-btn" onclick="changeQty('${item.id}', -1)">−</button>
                     <span class="qty-num">${item.qty}</span>

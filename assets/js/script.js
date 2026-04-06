@@ -1,3 +1,24 @@
+/*
+========================================================================================
+📋 CÂU HỎI TƯ DUY & BẢO VỆ ĐỒ ÁN (DÀNH CHO script.js)
+========================================================================================
+Q1: Tại sao lại dùng `localStorage` để lưu trạng thái ngôn ngữ (Language) và chế độ tối (Dark Mode) thay vì lưu vào Database trên máy chủ?
+-> Đáp án: Vì đây là các cài đặt ưu tiên mang tính cá nhân hóa (Preferences) của thiết bị/trình duyệt. Việc lưu tại `localStorage` mang lại 3 lợi ích:
+   1. Truy xuất cực nhanh khi vừa f5 load lại trang.
+   2. Không tốn tài nguyên hoặc lượt Query của Máy chủ (Server).
+   3. Tính bền vững: Lựa chọn của người dùng được giữ lại ngay cả khi tắt trình duyệt mà không cần tạo tài khoản đăng nhập.
+
+Q2: Thuật toán của lưới tìm kiếm (`handleSearch`) hoạt động như thế nào? Tại sao không dùng Regex?
+-> Đáp án: Thuật toán này thuộc dạng Fuzzy Search đơn giản. Khi người dùng gõ phím, nó sẽ:
+   1. Đưa chuỗi nhập do user gõ thành chữ thường bằng `toLowerCase()`.
+   2. Đưa tên sản phẩm (cả bản Tiếng Việt gốc và bản Tiếng Anh trong object dịch) về chữ thường.
+   3. Sử dụng hàm `includes()` của logic chuỗi để đối chiếu. 
+   Lý do không dùng Regex: Phương pháp `includes()` cực kì nhanh, xử lý nhẹ nhàng với bộ Data JSON nhỏ, đủ nhu cầu kết nối mà không sợ lỗi backslash ký tự đặc biệt của Regex.
+
+Q3: Làm thế nào DOM có thể thay đổi ngôn ngữ song song ngay lập tức mà không tải lại trang?
+-> Đáp án: Kỹ thuật Data Attributes (`data-vi`, `data-en`). Trình duyệt sẽ dùng selector `document.querySelectorAll("[data-vi][data-en]")` để gom tất cả các thẻ văn bản có chức năng đa ngôn ngữ. Hàm sẽ lặp qua (forEach), lấy `dataset` tương ứng cấu hình đè vào giao diện (`textContent`). Sau đó, DOM sẽ render ép lại hiển thị thẻ HTML.
+========================================================================================
+*/
 // ====================================================
 //  DARK MODE
 // ====================================================
