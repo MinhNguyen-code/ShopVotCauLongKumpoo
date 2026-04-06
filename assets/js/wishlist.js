@@ -1,60 +1,89 @@
 /*
 ========================================================================================
-📋 CÂU HỎI TƯ DUY & BẢO VỆ ĐỒ ÁN (DÀNH CHO wishlist.js)
+📋 wishlist.js — Danh Sách Yêu Thích (Wishlist)
 ========================================================================================
-Q1: Wishlist (Sản phẩm yêu thích) dùng biến `Array` nhưng tại sao không bị trùng lặp sản phẩm nếu bấm thả tim 2 lần?
--> Đáp án: Hàm xử lý `toggleWishlist()` đã dùng logic "Toggle" (công tắc). 
-   - Nó dùng `array.indexOf(productId)` tìm xem món đó đã có tim hay chưa. 
-   - Nếu kết quả `> -1` (đã nằm trong mảng) -> Thực thi hàm `splice()` cắt bỏ phần tử đó (Bỏ Yêu thích).
-   - Nếu kết quả `= -1` (chưa có) -> Thực thi `push()` nhét vào cuối Array (Thích).
+Q1: Wishlist có bị trùng lặp sản phẩm nếu bấm tim 2 lần không?
+→ Không. toggleWishlist() dùng logic "Toggle":
+   - array.indexOf(productId) > -1  → đã có → splice() xóa bỏ (Bỏ thích)
+   - array.indexOf(productId) = -1  → chưa có → push() thêm vào (Thích)
 
-Q2: Tính năng Wishlist có nhược điểm gì do không dùng Backend phụ thuộc UserID không? Làm sao để khắc phục?
--> Đáp án: Giao diện này dùng chung `localStorage` cho danh sách Yêu Thích mà không cấp phát theo `username` (như cách Giỏ hàng `cart-auth.js` đã làm). Điều này có nghĩa là, nếu tài khoản A logout và tài khoản B login chung trên 1 trình duyệt, họ vẫn sẽ thấy danh sách yêu thích của nhau.  
-   Để khắc phục, tương lai có thể đổi biến `kumpooWishlist` thành `kumpooWishlist_${user}` như Giỏ hàng.
+Q2: Wishlist có bị chia sẻ giữa các tài khoản không?
+→ Không. Wishlist lưu theo key động `kumpooWishlist_{username}`, giống cách
+   Giỏ hàng dùng `kumpoo_cart_{username}`. Mỗi tài khoản có danh sách riêng.
+   Khi chưa đăng nhập, wishlist luôn rỗng và ẩn badge.
 ========================================================================================
 */
-// wishlist.js
 
-// Initialize wishlist from Local Storage
-let wishlistItems = JSON.parse(localStorage.getItem('kumpooWishlist') || '[]');
-
-function updateWishlistBadge() {
-    const badge = document.getElementById('wishlistBadge');
-    if (badge) {
-        badge.textContent = wishlistItems.length;
-        badge.style.display = wishlistItems.length > 0 ? 'flex' : 'none';
-    }
+// ─────────────────────────────────────────────────────────────────────────────
+// Storage helpers — Lưu/đọc wishlist theo từng user
+// ─────────────────────────────────────────────────────────────────────────────
+function getWishlist() {
+    const user = (typeof getSession === 'function') ? getSession() : null;
+    if (!user) return [];
+    return JSON.parse(localStorage.getItem(`kumpooWishlist_${user}`) || '[]');
 }
 
+function saveWishlist(items) {
+    const user = (typeof getSession === 'function') ? getSession() : null;
+    if (!user) return;
+    localStorage.setItem(`kumpooWishlist_${user}`, JSON.stringify(items));
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Badge — Cập nhật số lượng hiển thị trên nút ❤️
+// ─────────────────────────────────────────────────────────────────────────────
+function updateWishlistBadge() {
+    const badge = document.getElementById('wishlistBadge');
+    if (!badge) return;
+    const items = getWishlist();
+    badge.textContent  = items.length;
+    badge.style.display = items.length > 0 ? 'flex' : 'none';
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Toggle Yêu Thích — Thêm / Xóa sản phẩm khỏi wishlist
+// ─────────────────────────────────────────────────────────────────────────────
 function toggleWishlist(e, productId) {
     if (e) e.stopPropagation();
-    
-    const index = wishlistItems.indexOf(productId);
-    if (index > -1) {
-        wishlistItems.splice(index, 1);
-    } else {
-        wishlistItems.push(productId);
+
+    // Nếu chưa đăng nhập → mở modal đăng nhập
+    const user = (typeof getSession === 'function') ? getSession() : null;
+    if (!user) {
+        if (typeof openAuthModal === 'function') openAuthModal('login');
+        return;
     }
-    
-    // Save state
-    localStorage.setItem('kumpooWishlist', JSON.stringify(wishlistItems));
+
+    const items = getWishlist();
+    const index = items.indexOf(productId);
+
+    if (index > -1) {
+        items.splice(index, 1);   // Đã thích → Bỏ thích
+    } else {
+        items.push(productId);    // Chưa thích → Thêm vào
+    }
+
+    saveWishlist(items);
     updateWishlistBadge();
-    
-    // Visually toggle heart icons on product grid and modals
+
+    // Cập nhật icon tim trên lưới sản phẩm và modal
     document.querySelectorAll(`.wishlist-icon-${productId}`).forEach(icon => {
         if (index > -1) {
-            icon.classList.remove('active'); // It was in list, now removed
+            icon.classList.remove('active');
         } else {
-            icon.classList.add('active'); // It wasn't in list, now added
+            icon.classList.add('active');
         }
     });
-    
-    // Rerender sidebar if open to reflect immediate changes
-    if (document.getElementById('wishlistSidebar') && document.getElementById('wishlistSidebar').classList.contains('open')) {
+
+    // Re-render sidebar nếu đang mở
+    const sidebar = document.getElementById('wishlistSidebar');
+    if (sidebar && sidebar.classList.contains('open')) {
         renderWishlistSidebar();
     }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Mở / Đóng Wishlist Sidebar
+// ─────────────────────────────────────────────────────────────────────────────
 function openWishlist() {
     renderWishlistSidebar();
     document.getElementById('wishlistOverlay').classList.add('open');
@@ -65,37 +94,58 @@ function openWishlist() {
 function closeWishlist() {
     document.getElementById('wishlistOverlay').classList.remove('open');
     document.getElementById('wishlistSidebar').classList.remove('open');
-    document.body.style.overflow = 'auto'; // Will not conflict with Cart overlay behavior assuming only one is open
+    document.body.style.overflow = 'auto';
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Định dạng giá tiền
+// ─────────────────────────────────────────────────────────────────────────────
 function formatPriceGlobal(price) {
     return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Render Wishlist Sidebar
+// ─────────────────────────────────────────────────────────────────────────────
 function renderWishlistSidebar() {
     const container = document.getElementById('wishlistItemsContainer');
     if (!container) return;
 
-    if (wishlistItems.length === 0) {
+    const user  = (typeof getSession === 'function') ? getSession() : null;
+    const lang  = (typeof currentLang !== 'undefined') ? currentLang : 'vi';
+
+    // Chưa đăng nhập
+    if (!user) {
         container.innerHTML = `
             <div class="cart-empty">
                 <span>🤍</span>
-                <p data-vi="Danh sách yêu thích trống." data-en="Your wishlist is empty.">Danh sách yêu thích trống.</p>
-            </div>
-        `;
-        if (typeof applyLanguage === 'function' && typeof currentLang !== 'undefined') {
-            applyLanguage(currentLang);
-        }
+                <p>${lang === 'en' ? 'Please log in to use your wishlist.' : 'Vui lòng đăng nhập để dùng danh sách yêu thích.'}</p>
+                <button onclick="openAuthModal('login'); closeWishlist();"
+                    style="margin-top:14px; padding:10px 24px; background:var(--primary-color); color:#fff; border:none; border-radius:10px; cursor:pointer; font-weight:700; font-size:0.9rem;">
+                    ${lang === 'en' ? 'Login' : 'Đăng Nhập'}
+                </button>
+            </div>`;
         return;
     }
-    
+
+    const items = getWishlist();
+
+    // Wishlist trống
+    if (items.length === 0) {
+        container.innerHTML = `
+            <div class="cart-empty">
+                <span>🤍</span>
+                <p>${lang === 'en' ? 'Your wishlist is empty.' : 'Danh sách yêu thích trống.'}</p>
+            </div>`;
+        return;
+    }
+
     let html = '';
-    // Assuming productsData is a global array defined in products.js
-    wishlistItems.forEach(id => {
-        const p = productsData.find(prod => prod.id === id); 
+    items.forEach(id => {
+        const p = productsData.find(prod => prod.id === id);
         if (!p) return;
-        
-        const isEn = (typeof currentLang !== 'undefined' && currentLang === 'en');
+
+        const isEn = (lang === 'en');
         const name = isEn ? (productTranslations.names[id]?.en || p.name) : p.name;
 
         html += `
@@ -104,24 +154,22 @@ function renderWishlistSidebar() {
                 <div class="cart-item-info">
                     <div class="cart-item-name" style="cursor:pointer;" onclick="openProductModal('${id}'); closeWishlist();">${name}</div>
                     <div class="cart-item-price">${formatPriceGlobal(p.price)}</div>
-                    <button class="btn-primary" style="padding: 6px 14px; font-size: 0.8rem; border-radius: 6px; margin-top: 8px;" 
-                            onclick="addToCart('${id}'); closeWishlist();" 
-                            data-vi="Thêm giỏ hàng" data-en="Add to Cart">Thêm giỏ hàng</button>
+                    <button class="btn-primary" style="padding: 6px 14px; font-size: 0.8rem; border-radius: 6px; margin-top: 8px;"
+                            onclick="addToCart('${id}'); closeWishlist();"
+                            data-vi="Thêm giỏ hàng" data-en="Add to Cart">
+                        ${isEn ? 'Add to Cart' : 'Thêm giỏ hàng'}
+                    </button>
                 </div>
                 <button class="cart-item-remove" onclick="toggleWishlist(null, '${id}')">🗑</button>
-            </div>
-        `;
+            </div>`;
     });
-    
+
     container.innerHTML = html;
-    
-    // Trigger translation reload for the DOM changes
-    if (typeof applyLanguage === 'function' && typeof currentLang !== 'undefined') {
-        applyLanguage(currentLang);
-    }
 }
 
-// Attach event listeners when document is parsed
+// ─────────────────────────────────────────────────────────────────────────────
+// Khởi tạo khi DOM sẵn sàng
+// ─────────────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
     updateWishlistBadge();
 });

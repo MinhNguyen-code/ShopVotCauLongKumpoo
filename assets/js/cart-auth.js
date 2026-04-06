@@ -96,13 +96,13 @@ window.switchAuthTab = function (tab) {
 
 function applyAuthLang() {
     const lang = (typeof currentLang !== 'undefined') ? currentLang : 'vi';
-    // Update placeholder for inputs in auth modal and checkout modal
-    document.querySelectorAll('#authModal input, #checkoutModal input').forEach(inp => {
+    // Update placeholder for inputs and textareas in all modals
+    document.querySelectorAll('#authModal input, #checkoutModal input, #profileModal input, #contactModal input, #contactModal textarea').forEach(inp => {
         const ph = inp.dataset[lang + 'Placeholder'];
         if (ph) inp.placeholder = ph;
     });
     // Update data-vi/en text nodes
-    document.querySelectorAll('#authModal [data-vi][data-en], #checkoutModal [data-vi][data-en]').forEach(el => {
+    document.querySelectorAll('#authModal [data-vi][data-en], #checkoutModal [data-vi][data-en], #profileModal [data-vi][data-en], #contactModal [data-vi][data-en]').forEach(el => {
         el.textContent = el.dataset[lang];
     });
 }
@@ -507,3 +507,64 @@ document.addEventListener('DOMContentLoaded', () => {
     refreshAuthUI();
     renderCartSidebar();
 });
+
+// ── PROFILE MODAL ──────────────────────────────────────
+window.openProfileModal = function () {
+    const user = getSession();
+    if (!user) {
+        openAuthModal('login');
+        return;
+    }
+    const profileModal = document.getElementById('profileModal');
+    if (profileModal) {
+        document.getElementById('profileUsername').textContent = user;
+        profileModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+};
+
+window.closeProfileModal = function (e) {
+    if (e && e.target !== document.getElementById('profileModal')) return;
+    const profileModal = document.getElementById('profileModal');
+    if (profileModal) {
+        profileModal.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+};
+
+// ── CONTACT MODAL ──────────────────────────────────────
+window.openContactModal = function () {
+    const contactModal = document.getElementById('contactModal');
+    if (contactModal) {
+        contactModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+};
+
+window.closeContactModal = function (e) {
+    if (e && e.target !== document.getElementById('contactModal')) return;
+    const contactModal = document.getElementById('contactModal');
+    if (contactModal) {
+        contactModal.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+};
+
+window.submitContactModalForm = function () {
+    const fName = document.getElementById('contactModalFName').value.trim();
+    const lName = document.getElementById('contactModalLName').value.trim();
+    const contact = document.getElementById('contactModalContact').value.trim();
+    const msg = document.getElementById('contactModalMsg').value.trim();
+    const lang = (typeof currentLang !== 'undefined') ? currentLang : 'vi';
+    
+    if (!fName || !lName || !contact || !msg) {
+        showToast(lang === 'en' ? 'Please fill in all contact fields.' : 'Vui lòng điền đủ thông tin liên hệ.');
+        return;
+    }
+    showToast(lang === 'en' ? 'Your message has been sent successfully!' : 'Lời nhắn đã được gửi thành công!');
+    closeContactModal(null);
+    document.getElementById('contactModalFName').value = '';
+    document.getElementById('contactModalLName').value = '';
+    document.getElementById('contactModalContact').value = '';
+    document.getElementById('contactModalMsg').value = '';
+};

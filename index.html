@@ -210,6 +210,35 @@
         [data-en] {
             transition: opacity 0.15s ease;
         }
+
+        /* ── Wishlist button & badge ── */
+        .wishlist-btn {
+            position: relative;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.25rem;
+            line-height: 1;
+            padding: 4px;
+        }
+
+        .wishlist-badge {
+            display: none;                /* JS sẽ đổi sang flex khi có item */
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            pointer-events: none;
+        }
     </style>
 </head>
 
@@ -238,7 +267,7 @@
                 </li>
                 <li><a href="#blog" data-vi="Blog" data-en="Blog">Blog</a></li>
                 <li><a href="#about" data-vi="Về Kumpoo" data-en="About Kumpoo">Về Kumpoo</a></li>
-                <li><a href="#contact" data-vi="Liên Hệ" data-en="Contact">Liên Hệ</a></li>
+                <li><a href="javascript:void(0)" onclick="openContactModal()" data-vi="Liên Hệ" data-en="Contact">Liên Hệ</a></li>
             </ul>
         </nav>
 
@@ -254,12 +283,12 @@
             <!-- Wishlist -->
             <button class="wishlist-btn" id="wishlistHeaderBtn" onclick="openWishlist()" title="Yêu thích">
                 ❤️
-                <span class="wishlist-badge" id="wishlistBadge" style="display:none; position:absolute; top:-5px; right:-5px; background:var(--primary-color); color:white; font-size:0.75rem; font-weight:700; width:18px; height:18px; border-radius:50%; align-items:center; justify-content:center;">0</span>
+                <span class="wishlist-badge" id="wishlistBadge">0</span>
             </button>
 
             <!-- Auth zone (shown after login) -->
             <div id="authZone" style="display:none; align-items:center; gap:8px;">
-                <span class="header-user-chip">
+                <span class="header-user-chip" onclick="openProfileModal()" style="cursor: pointer;" title="Profile">
                     <span class="header-user-avatar">◉</span>
                     <span id="headerUsername" class="header-user-name"></span>
                 </span>
@@ -300,7 +329,7 @@
             <li><a href="#blog" onclick="closeMobileNav()" data-vi="Blog" data-en="Blog">Blog</a></li>
             <li><a href="#about" onclick="closeMobileNav()" data-vi="Về Kumpoo" data-en="About Kumpoo">Về Kumpoo</a>
             </li>
-            <li><a href="#contact" onclick="closeMobileNav()" data-vi="Liên Hệ" data-en="Contact">Liên Hệ</a></li>
+            <li><a href="javascript:void(0)" onclick="closeMobileNav(); openContactModal()" data-vi="Liên Hệ" data-en="Contact">Liên Hệ</a></li>
         </ul>
     </nav>
 
@@ -707,6 +736,353 @@
         </div>
     </div>
 
+    <!-- ===== PROFILE MODAL (WIREFRAME LAYOUT) ===== -->
+    <style>
+        /* Exact match to minimalist profile wireframe */
+        .profile-box {
+            flex-direction: row !important; 
+            padding: 0 !important; 
+            max-width: 1100px !important; 
+            width: 95% !important;
+            max-height: 90vh;
+            background: #fff;
+            border-radius: 4px !important;
+            color: #333;
+            overflow: hidden;
+            display: flex;
+            position: relative;
+        }
+        .profile-sidebar {
+            width: 25%;
+            background: #fdfdfd;
+            padding: 40px 30px;
+            border-right: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+        }
+        .profile-sidebar-header { margin-bottom: 25px; }
+        .profile-sidebar h3 { font-size: 1.25rem; font-weight: 800; color: #222; border-bottom: 3px solid #222; padding-bottom: 8px; display: inline-block; letter-spacing: 0.5px; }
+        .profile-nav-item {
+            padding: 14px 20px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            background: #fff;
+            color: #555;
+        }
+        .profile-nav-item.active { background: #252e3e; color: #fff; border-color: #252e3e; }
+        .profile-nav-item:hover:not(.active) { background: #f5f5f5; border-color: #ccc; }
+
+        .profile-main {
+            width: 75%;
+            padding: 50px 60px;
+            overflow-y: auto;
+        }
+        .profile-header { display: flex; align-items: center; gap: 25px; margin-bottom: 30px; }
+        .profile-avatar-ph { width: 90px; height: 90px; border-radius: 50%; border: 1.5px solid #888; display: flex; align-items: center; justify-content: center; position: relative; background: #fafafa; flex-shrink: 0; }
+        .profile-avatar-ph::before { content: ''; position: absolute; width: 100%; height: 100%; border-radius: 50%; background: linear-gradient(to bottom right, transparent 49.5%, #888 49.5%, #888 50.5%, transparent 50.5%); }
+        .profile-avatar-ph::after { content: ''; position: absolute; width: 100%; height: 100%; border-radius: 50%; background: linear-gradient(to top right, transparent 49.5%, #888 49.5%, #888 50.5%, transparent 50.5%); }
+        .profile-header-info { display: flex; flex-direction: column; gap: 10px; }
+        .profile-header-info h2 { font-size: 1.6rem; color: #222; font-weight: 700; margin: 0; }
+        .profile-header-btn { padding: 8px 20px; border: 1.5px solid #888; background: transparent; border-radius: 2px; font-size: 0.85rem; font-weight: 600; cursor: pointer; color: #444; display: inline-block; width: max-content; transition: 0.2s; }
+        .profile-header-btn:hover { background: #eee; }
+
+        .profile-divider { height: 1px; background: #ddd; margin-bottom: 40px; }
+
+        .profile-form-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px; align-items: start; }
+        .profile-form-col { display: flex; flex-direction: column; gap: 20px; }
+
+        .profile-field { display: flex; flex-direction: column; gap: 8px; }
+        .profile-field label { font-size: 0.85rem; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.5px;}
+        .profile-field input, .profile-field textarea {
+            width: 100%; padding: 14px 18px; border: 1.5px solid #ccc; border-radius: 2px;
+            font-family: inherit; font-size: 0.95rem; outline: none; background: transparent; transition: border 0.2s; color: #333;
+        }
+        .profile-field input:focus, .profile-field textarea:focus { border-color: #222; }
+        .profile-field input.disabled { background: #f0f0f0; border-color: #e5e5e5; color: #888; cursor: not-allowed; }
+        .profile-field textarea { resize: vertical; min-height: 120px; height: 120px; }
+
+        .profile-btn-group { display: flex; gap: 15px; margin-top: 15px; }
+        .profile-btn-dark { background: #252e3e; color: #fff; padding: 15px 30px; border: none; border-radius: 2px; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 0.5px; }
+        .profile-btn-light { background: transparent; color: #333; padding: 15px 30px; border: 1.5px solid #888; border-radius: 2px; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 0.5px; }
+        .profile-btn-dark:hover { background: #3b4961; }
+        .profile-btn-light:hover { background: #f0f0f0; border-color: #555; }
+
+        body.dark-mode .profile-box { background: #121212; color: #eee; }
+        body.dark-mode .profile-sidebar { background: #181818; border-right-color: #333; }
+        body.dark-mode .profile-sidebar h3 { color: #fff; border-bottom-color: #fff; }
+        body.dark-mode .profile-nav-item { background: #1f1f1f; color: #ccc; border-color: #444; }
+        body.dark-mode .profile-nav-item.active { background: #e0e0e0; color: #111; border-color: #e0e0e0; }
+        body.dark-mode .profile-divider { background: #333; }
+        body.dark-mode .profile-header-info h2 { color: #fff; }
+        body.dark-mode .profile-header-btn { border-color: #666; color: #ccc; }
+        body.dark-mode .profile-header-btn:hover { background: #333; }
+        body.dark-mode .profile-avatar-ph { border-color: #666; background: #222; }
+        body.dark-mode .profile-avatar-ph::before, body.dark-mode .profile-avatar-ph::after { background-image: linear-gradient(to bottom right, transparent 49%, #666 49%, #666 51%, transparent 51%); }
+        body.dark-mode .profile-field label { color: #aaa; }
+        body.dark-mode .profile-field input, body.dark-mode .profile-field textarea { border-color: #555; color: #fff; background: #1a1a1a; }
+        body.dark-mode .profile-field input:focus, body.dark-mode .profile-field textarea:focus { border-color: #aaa; }
+        body.dark-mode .profile-field input.disabled { background: #252525; border-color: #444; color: #777; }
+        body.dark-mode .profile-btn-light { color: #eee; border-color: #777; }
+        body.dark-mode .profile-btn-light:hover { background: #2a2a2a; }
+
+        @media (max-width: 900px) {
+            .profile-box { flex-direction: column !important; overflow-y: auto;}
+            .profile-sidebar { width: 100%; border-right: none; border-bottom: 1px solid #ddd; padding: 30px; }
+            .profile-main { width: 100%; padding: 30px; overflow-y: visible;}
+            .profile-form-grid { grid-template-columns: 1fr; gap: 40px; }
+        }
+    </style>
+
+    <div id="profileModal" class="auth-overlay" onclick="closeProfileModal(event)" style="z-index: 2010;">
+        <div class="auth-box profile-box">
+            <button class="auth-close" onclick="closeProfileModal(null)" style="position: absolute; right: 20px; top: 20px; z-index: 10; color: #888; font-size: 1.8rem;">&#x2715;</button>
+            
+            <!-- Sidebar -->
+            <div class="profile-sidebar">
+                <div class="profile-sidebar-header">
+                    <h3 data-vi="TÀI KHOẢN" data-en="ACCOUNT">TÀI KHOẢN</h3>
+                </div>
+                <div class="profile-nav-item active" data-vi="Hồ sơ cá nhân" data-en="Personal Profile">Hồ sơ cá nhân</div>
+                <div class="profile-nav-item" data-vi="Lịch sử đơn hàng" data-en="Order History">Lịch sử đơn hàng</div>
+                <div class="profile-nav-item" data-vi="Địa chỉ giao hàng" data-en="Delivery Address">Địa chỉ giao hàng</div>
+                <div class="profile-nav-item" data-vi="Đăng xuất" data-en="Log Out" onclick="logout(); closeProfileModal(null);">Đăng xuất</div>
+            </div>
+            
+            <!-- Main Form Area -->
+            <div class="profile-main">
+                <div class="profile-header">
+                    <!-- Avatar placeholder matching wireframe (circle with X) -->
+                    <div class="profile-avatar-ph"></div>
+                    <div class="profile-header-info">
+                        <h2 id="profileUsername">Nguyễn Bình Minh</h2>
+                        <button class="profile-header-btn" data-vi="Thay Đổi Ảnh Đại Diện" data-en="Change Avatar">Thay Đổi Ảnh Đại Diện</button>
+                    </div>
+                </div>
+                
+                <div class="profile-divider"></div>
+                
+                <div class="profile-form-grid">
+                    <!-- Left Column Form matching wireframe layout -->
+                    <div class="profile-form-col">
+                        <div class="profile-field">
+                            <label data-vi="Tên Hiển Thị" data-en="Display Name">Tên Hiển Thị</label>
+                            <input type="text" data-vi-placeholder="Nhập tên hiển thị" data-en-placeholder="Enter display name" value="Nguyễn Bình Minh">
+                        </div>
+                        <div class="profile-field">
+                            <label data-vi="Tên Đăng Nhập" data-en="Username">Tên Đăng Nhập</label>
+                            <input type="text" value="user_kumpoo" class="disabled" readonly>
+                        </div>
+                        <div class="profile-field">
+                            <label data-vi="Email" data-en="Email">Email</label>
+                            <input type="email" data-vi-placeholder="Địa chỉ Email" data-en-placeholder="Email Address" value="kumpoo@gmail.com">
+                        </div>
+                        <div class="profile-field">
+                            <label data-vi="Địa Chỉ Thường Trú" data-en="Home Address">Địa Chỉ Thường Trú</label>
+                            <textarea data-vi-placeholder="Nhập địa chỉ" data-en-placeholder="Enter address">123 Đ. Cầu Giấy, Quan Hoa, Cầu Giấy, Hà Nội</textarea>
+                        </div>
+                        <div class="profile-field">
+                            <label data-vi="Số Điện Thoại" data-en="Phone Number">Số Điện Thoại</label>
+                            <input type="text" data-vi-placeholder="Nhập số điện thoại" data-en-placeholder="Phone Number" value="+84 123 456 789">
+                        </div>
+                        
+                        <div class="profile-btn-group">
+                            <button class="profile-btn-dark" data-vi="LƯU THAY ĐỔI" data-en="SAVE CHANGES" onclick="closeProfileModal(null)">LƯU THAY ĐỔI</button>
+                            <button class="profile-btn-light" data-vi="HỦY" data-en="CANCEL" onclick="closeProfileModal(null)">HỦY</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Column Form matching wireframe layout -->
+                    <div class="profile-form-col">
+                        <div class="profile-field">
+                            <label data-vi="Mật Khẩu Hiện Tại" data-en="Current Password">Mật Khẩu Hiện Tại</label>
+                            <input type="password" placeholder="********">
+                        </div>
+                        <div class="profile-field">
+                            <label data-vi="Mật Khẩu Mới" data-en="New Password">Mật Khẩu Mới</label>
+                            <input type="password" placeholder="********">
+                        </div>
+                        <div class="profile-field">
+                            <label data-vi="Xác Nhận Mật Khẩu" data-en="Confirm Password">Xác Nhận Mật Khẩu</label>
+                            <input type="password" placeholder="********">
+                        </div>
+                        
+                        <button class="profile-btn-dark" style="align-self: flex-start; margin-top: 10px;" data-vi="ĐỔI MẬT KHẨU" data-en="CHANGE PASSWORD">ĐỔI MẬT KHẨU</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== CONTACT MODAL (WIREFRAME LAYOUT) ===== -->
+    <style>
+        /* Exact match to minimalist wireframe */
+        .contact-box { 
+            flex-direction: column !important; 
+            padding: 50px !important; 
+            max-width: 1200px !important; 
+            width: 95% !important;
+            overflow-y: auto; 
+            max-height: 95vh;
+            position: relative; 
+            background: #fff;
+            border-radius: 4px !important;
+            color: #333;
+        }
+        .contact-header { text-align: center; margin-bottom: 60px; }
+        .contact-header h2 { font-size: 2rem; margin-bottom: 12px; color: #222; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; }
+        .contact-header .underline { width: 80px; height: 3px; background: #222; margin: 0 auto; }
+        
+        .contact-body { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+        
+        /* Left: Form */
+        .contact-form-side { display: flex; flex-direction: column; gap: 20px; width: 100%; }
+        .contact-form-side input, .contact-form-side textarea { 
+            width: 100%; 
+            padding: 16px 20px; 
+            border: 1px solid #aaa; 
+            border-radius: 2px; 
+            box-sizing: border-box; 
+            font-family: inherit; 
+            font-size: 1rem; 
+            background: transparent; 
+            outline: none; 
+            transition: border-color 0.2s; 
+        }
+        .contact-form-side input:focus, .contact-form-side textarea:focus { border-color: #222; border-width: 2px; padding: 15px 19px; }
+        .contact-form-side textarea { resize: vertical; min-height: 200px; height: 200px; }
+        
+        .contact-submit-btn { 
+            background: #252e3e; /* Dark slate blue like in wireframe */
+            color: #fff; 
+            border: none; 
+            padding: 20px; 
+            border-radius: 2px; 
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: background 0.3s; 
+            width: 100%; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+        .contact-submit-btn:hover { background: #3b4961; }
+        
+        /* Right: Info + Map */
+        .contact-info-side { display: flex; flex-direction: column; gap: 25px; width: 100%; }
+        .contact-info-item { display: flex; align-items: flex-start; gap: 20px; }
+        
+        .contact-info-icon-svg { width: 28px; height: 28px; border: 1.5px solid #555; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; color: #555; }
+        .contact-info-text { font-size: 0.95rem; line-height: 1.5; color: #444; }
+        .contact-info-text strong { display: block; height: 6px; width: 40px; background: #666; margin-bottom: 8px; border-radius: 3px; }
+        
+        .contact-map-container { 
+            width: 100%; 
+            height: 300px; /* Big map */
+            background: #fdfdfd; 
+            border: 1px solid #aaa; 
+            margin-top: 15px; 
+            position: relative; 
+        }
+        /* Diagonals for exact wireframe map placeholder look */
+        .map-placeholder-lines::before { 
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            background: linear-gradient(to bottom right, transparent 49.8%, #aaa 49.8%, #aaa 50.2%, transparent 50.2%); 
+        }
+        .map-placeholder-lines::after { 
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            background: linear-gradient(to top right, transparent 49.8%, #aaa 49.8%, #aaa 50.2%, transparent 50.2%); 
+        }
+        
+        body.dark-mode .contact-box { background: #121212; color: #eee; }
+        body.dark-mode .contact-header h2 { color: #fff; }
+        body.dark-mode .contact-header .underline { background: #fff; }
+        body.dark-mode .contact-form-side input, body.dark-mode .contact-form-side textarea { border-color: #555; color: #fff; background: #1a1a1a; }
+        body.dark-mode .contact-form-side input:focus, body.dark-mode .contact-form-side textarea:focus { border-color: #fff; }
+        body.dark-mode .contact-info-text { color: #ccc; }
+        body.dark-mode .contact-info-icon-svg { border-color: #999; color: #999; }
+        body.dark-mode .contact-map-container { background: #1a1a1a; border-color: #555; }
+        body.dark-mode .map-placeholder-lines::before, body.dark-mode .map-placeholder-lines::after { background-image: linear-gradient(to bottom right, transparent 49.8%, #555 49.8%, #555 50.2%, transparent 50.2%); }
+        
+        @media (max-width: 900px) {
+            .contact-body { grid-template-columns: 1fr; gap: 50px; }
+            .contact-map-container { height: 250px; }
+        }
+    </style>
+    <div id="contactModal" class="auth-overlay" onclick="closeContactModal(event)" style="z-index: 2010;">
+        <div class="auth-box contact-box">
+            <button class="auth-close" onclick="closeContactModal(null)" style="position: absolute; right: 25px; top: 25px; z-index: 10; color: #666; font-size: 1.8rem;">&#x2715;</button>
+            
+            <div class="contact-header">
+                <h2 data-vi="LIÊN HỆ VỚI CHÚNG TÔI" data-en="GET IN TOUCH">LIÊN HỆ VỚI CHÚNG TÔI</h2>
+                <div class="underline"></div>
+            </div>
+            
+            <div class="contact-body">
+                <!-- Left side: Form matching the 4 fields and large button in wireframe -->
+                <div class="contact-form-side">
+                    <input type="text" data-vi-placeholder="Họ và Tên" data-en-placeholder="Full Name" placeholder="Họ và Tên" id="contactModalFName">
+                    <input type="email" data-vi-placeholder="Địa chỉ Email" data-en-placeholder="Email Address" placeholder="Địa chỉ Email" id="contactModalLName">
+                    <input type="text" data-vi-placeholder="Chủ đề / Yêu cầu tư vấn" data-en-placeholder="Subject / Consultation Request" placeholder="Chủ đề / Yêu cầu tư vấn" id="contactModalContact">
+                    <textarea data-vi-placeholder="Nội dung tin nhắn..." data-en-placeholder="Your message..." placeholder="Nội dung tin nhắn..." id="contactModalMsg"></textarea>
+                    
+                    <button class="contact-submit-btn" onclick="submitContactModalForm()">
+                        <span data-vi="GỬI YÊU CẦU" data-en="SUBMIT REQUEST">GỬI YÊU CẦU</span>
+                    </button>
+                </div>
+                
+                <!-- Right side: Info matching 4 list items + Map crossing placeholder in wireframe -->
+                <div class="contact-info-side">
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon-svg">&#x2715;</div>
+                        <div class="contact-info-text">
+                            <strong style="display:inline-block; font-size: 1.05rem; height:auto; width:auto; background:none; font-weight:700; margin-bottom:2px;" data-vi="Địa chỉ" data-en="Address">Địa chỉ</strong><br>
+                            <span data-vi="123 Đ. Cầu Giấy, Quan Hoa, Cầu Giấy, Hà Nội" data-en="123 Cau Giay St, Quan Hoa, Cau Giay, Hanoi">123 Đ. Cầu Giấy, Quan Hoa, Cầu Giấy, Hà Nội</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon-svg">&#x2715;</div>
+                        <div class="contact-info-text">
+                            <strong style="display:inline-block; font-size: 1.05rem; height:auto; width:auto; background:none; font-weight:700; margin-bottom:2px;" data-vi="Số điện thoại" data-en="Phone">Số điện thoại</strong><br>
+                            <span>+84 123 456 789</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon-svg">&#x2715;</div>
+                        <div class="contact-info-text">
+                            <strong style="display:inline-block; font-size: 1.05rem; height:auto; width:auto; background:none; font-weight:700; margin-bottom:2px;" data-vi="Email hỗ trợ" data-en="Email Support">Email hỗ trợ</strong><br>
+                            <span>support@kumpoo.vn</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon-svg">&#x2715;</div>
+                        <div class="contact-info-text">
+                            <strong style="display:inline-block; font-size: 1.05rem; height:auto; width:auto; background:none; font-weight:700; margin-bottom:2px;" data-vi="Giờ hoạt động" data-en="Working Hours">Giờ hoạt động</strong><br>
+                            <span data-vi="8:00 Sáng - 10:00 Tối (Tất cả các ngày)" data-en="8:00 AM - 10:00 PM (Everyday)">8:00 Sáng - 10:00 Tối (Tất cả các ngày)</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Box with an X cross matching the wireframe map block -->
+                    <div class="contact-map-container">
+                        <div class="map-placeholder-lines"></div>
+                        <!-- iFrame can be put here -->
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
     <!-- ===== CHECKOUT MODAL ===== -->
     <div id="checkoutModal" class="auth-overlay" onclick="closeCheckoutModal(event)" style="z-index: 2005;">
         <div class="auth-box" style="text-align: center; max-width: 400px; padding: 20px 25px; max-height: 95vh; overflow-y: auto;">
@@ -826,7 +1202,8 @@
     <script src="assets/js/products.js"></script>
     <script src="assets/js/wishlist.js"></script>
     <script src="assets/js/script.js"></script>
-    <script src="assets/js/cart-auth.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/cart.js"></script>
     <script src="assets/js/chatbot.js"></script>
 </body>
 
